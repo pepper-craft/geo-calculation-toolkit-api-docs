@@ -1,0 +1,147 @@
+openapi: 3.0.3
+info:
+  title: Distance between two coordinates API
+  version: 1.0.0
+  description: |
+    This is an HTTP API that calculates the straight-line surface distance between two geographic coordinates.
+servers:
+  - url: https://geo-calculation-toolkit-api.p.rapidapi.com
+    description: Rapid API
+tags:
+  - name: Distance Calculation
+    description: Distance-related operations
+externalDocs:
+  description: Error Codes
+  url: ../common/error-codes.md
+
+paths:
+  /distance/between-coordinates:
+    post:
+      tags: [ Distance Calculation ]
+      summary: Distance between two coordinates
+      description: |
+        This is an HTTP API that calculates the straight-line surface distance between two geographic coordinates.
+      operationId: calculateDistanceBetweenCoordinates
+      parameters:
+        - name: unit
+          in: query
+          description: Distance unit (`mm`, `m`, `km`, `ft`, `yd`, `mi`) - defaults `m`
+          required: false
+          schema:
+            type: string
+            enum: [ mm, m, km, ft, yd, mi ]
+            default: m
+        - name: X-RapidAPI-Key
+          in: header
+          description: Your API key issued by RapidAPI
+          required: true
+          schema:
+            type: string
+        - name: X-RapidAPI-Host
+          in: header
+          description: The API host identifier on RapidAPI
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Request payload for distance calculation
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DistanceRequest'
+            example:
+              fromCoordinate:
+                lat: 37.618515
+                lng: 126.920021
+              toCoordinate:
+                lat: 37.618385
+                lng: 126.920339
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DistanceSuccessResponse'
+              example:
+                success: true
+                data:
+                  distance: 31.4989
+                  unit: m
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                success: false
+                code: REQUIRED_PARAMETER_MISSING
+                message: Required parameter is missing.
+                detailMessage: Required parameter is missing. (fromCoordinate)
+
+components:
+  schemas:
+    Coordinate:
+      type: object
+      required: [ lat, lng ]
+      properties:
+        lat:
+          type: number
+          description: Latitude of the point
+        lng:
+          type: number
+          description: Longitude of the point
+
+    DistanceRequest:
+      type: object
+      required: [ fromCoordinate, toCoordinate ]
+      properties:
+        fromCoordinate:
+          description: Starting point coordinates
+          $ref: '#/components/schemas/Coordinate'
+        toCoordinate:
+          description: Destination point coordinates
+          $ref: '#/components/schemas/Coordinate'
+
+    DistanceData:
+      type: object
+      required: [ distance, unit ]
+      properties:
+        distance:
+          type: number
+          description: Distance between coordinates (4 decimal precision)
+        unit:
+          type: string
+          description: Unit of measurement (`mm`, `m`, `km`, `ft`, `yd`, `mi`)
+          enum: [ mm, m, km, ft, yd, mi ]
+
+    DistanceSuccessResponse:
+      type: object
+      required: [ success, data ]
+      properties:
+        success:
+          type: boolean
+          description: Indicates whether the operation succeeded
+          example: true
+        data:
+          $ref: '#/components/schemas/DistanceData'
+
+    ErrorResponse:
+      type: object
+      required: [ success, code, message, detailMessage ]
+      properties:
+        success:
+          type: boolean
+          description: Indicates whether the operation was successful. Always `false` here.
+          example: false
+        code:
+          type: string
+          description: Application-defined error code representing the type of failure.
+        message:
+          type: string
+          description: General explanation of the error.
+        detailMessage:
+          type: string
+          description: Additional information providing context about the error for debugging purposes.

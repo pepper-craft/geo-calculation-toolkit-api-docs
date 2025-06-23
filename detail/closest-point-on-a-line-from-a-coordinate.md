@@ -47,16 +47,16 @@ Content-Type: application/json
     "lat": 37.618492,
     "lng": 126.920078
   },
-  "line": {
-    "fromCoordinate": {
+  "line": [
+    {
       "lat": 37.618515,
       "lng": 126.920021
     },
-    "toCoordinate": {
+    {
       "lat": 37.618385,
       "lng": 126.920339
     }
-  }
+  ]
 }
 ```
 
@@ -78,18 +78,14 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field              | Type   | Required | Description                                                  |
-|--------------------|--------|----------|--------------------------------------------------------------|
-| `coordinate`       | object | ✅ Yes    | The reference point for which the nearest location is sought |
-| └ `lat`            | number | ✅ Yes    | Latitude of the input point                                  |
-| └ `lng`            | number | ✅ Yes    | Longitude of the input point                                 |
-| `line`             | object | ✅ Yes    | The line segment defined by two coordinates                  |
-| └ `fromCoordinate` | object | ✅ Yes    | Starting point of the line                                   |
-| └─ `lat`           | number | ✅ Yes    | Latitude of the starting point                               |
-| └─ `lng`           | number | ✅ Yes    | Longitude of the starting point                              |
-| └ `toCoordinate`   | object | ✅ Yes    | Ending point of the line                                     |
-| └─ `lat`           | number | ✅ Yes    | Latitude of the ending point                                 |
-| └─ `lng`           | number | ✅ Yes    | Longitude of the ending point                                |
+| Field        | Type   | Required | Description                                                  |
+|--------------|--------|----------|--------------------------------------------------------------|
+| `coordinate` | object | ✅ Yes    | The reference point for which the nearest location is sought |
+| └ `lat`      | number | ✅ Yes    | Latitude of the input point                                  |
+| └ `lng`      | number | ✅ Yes    | Longitude of the input point                                 |
+| `line`       | array  | ✅ Yes    | Line segment represented by two coordinates                  |
+| └ `lat`      | number | ✅ Yes    | Latitude of the starting point                               |
+| └ `lng`      | number | ✅ Yes    | Longitude of the starting point                              |
 
 ---
 

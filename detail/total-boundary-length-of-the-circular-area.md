@@ -42,12 +42,14 @@ POST {{BASE-URL}}/length/circle/boundary?unit=m
 Content-Type: application/json
 
 {
-  "centerCoordinate": {
-    "lat": 37.618492,
-    "lng": 126.920078
-  },
-  "radius": 200,
-  "radiusUnit": "m"
+  "circle": {
+    "coordinate": {
+      "lat": 37.618492,
+      "lng": 126.920078
+    },
+    "radius": 200,
+    "radiusUnit": "m"
+  }
 }
 ```
 
@@ -69,19 +71,20 @@ Content-Type: application/json
 
 **2.2.3. Query Parameters**
 
-| Parameter | Type   | Required   | Description                                                      |
-|-----------|--------|------------|------------------------------------------------------------------|
-| `unit`    | string | ❌ Optional | Distance unit (`mm`, `m`, `km`, `ft`, `yd`, `mi`) - defaults `m` |
+| Parameter | Type   | Required   | Description                                                                                |
+|-----------|--------|------------|--------------------------------------------------------------------------------------------|
+| `unit`    | string | ❌ Optional | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`). Default: `m`. |
 
 **2.2.4. Request Body**
 
-| Field              | Type   | Required   | Description                                                              |
-|--------------------|--------|------------|--------------------------------------------------------------------------|
-| `centerCoordinate` | object | ✅ Yes      | The center point of the circular area                                    |
-| └ `lat`            | number | ✅ Yes      | Latitude of the center point                                             |
-| └ `lng`            | number | ✅ Yes      | Longitude of the center point                                            |
-| `radius`           | number | ✅ Yes      | Radius value of the circle                                               |
-| `radiusUnit`       | string | ❌ Optional | Unit of the radius (`mm`, `cm`, `m`, `km`, `ft`, `mi`) - defaults to `m` |
+| Field          | Type   | Required   | Description                                                              |
+|----------------|--------|------------|--------------------------------------------------------------------------|
+| `circle`       | object | ✅ Yes      | Definition of the circular area                                          |
+| └ `coordinate` | object | ✅ Yes      | Center point of the circle                                               |
+| └─ `lat`       | number | ✅ Yes      | Latitude of the center                                                   |
+| └─ `lng`       | number | ✅ Yes      | Longitude of the center                                                  |
+| └ `radius`     | number | ✅ Yes      | Radius length of the circle                                              |
+| └ `radiusUnit` | string | ❌ Optional | Unit of the radius (`mm`, `cm`, `m`, `km`, `ft`, `mi`) - defaults to `m` |
 
 ---
 

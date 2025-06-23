@@ -42,7 +42,7 @@ POST {{BASE-URL}}/length/polyline?unit=m
 Content-Type: application/json
 
 {
-  "coordinates": [
+  "polyline": [
     { "lat": 37.618492, "lng": 126.920078 },
     { "lat": 37.618385, "lng": 126.920339 },
     { "lat": 37.618210, "lng": 126.920580 },
@@ -69,17 +69,17 @@ Content-Type: application/json
 
 **2.2.3. Query Parameters**
 
-| Parameter | Type   | Required   | Description                                                      |
-|-----------|--------|------------|------------------------------------------------------------------|
-| `unit`    | string | ❌ Optional | Distance unit (`mm`, `m`, `km`, `ft`, `yd`, `mi`) - defaults `m` |
+| Parameter | Type   | Required   | Description                                                                                |
+|-----------|--------|------------|--------------------------------------------------------------------------------------------|
+| `unit`    | string | ❌ Optional | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`). Default: `m`. |
 
 **2.2.4. Request Body**
 
-| Field         | Type   | Required | Description                                               |
-|---------------|--------|----------|-----------------------------------------------------------|
-| `coordinates` | array  | ✅ Yes    | An ordered list of geographic points forming the polyline |
-| └ `lat`       | number | ✅ Yes    | Latitude of the coordinate                                |
-| └ `lng`       | number | ✅ Yes    | Longitude of the coordinate                               |
+| Field      | Type   | Required | Description                                        |
+|------------|--------|----------|----------------------------------------------------|
+| `polyline` | array  | ✅ Yes    | List of coordinates representing the polyline path |
+| └ `lat`    | number | ✅ Yes    | Latitude of the coordinate                         |
+| └ `lng`    | number | ✅ Yes    | Longitude of the coordinate                        |
 
 ---
 

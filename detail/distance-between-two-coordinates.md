@@ -72,9 +72,9 @@ Content-Type: application/json
 
 **2.2.3. Query Parameters**
 
-| Parameter | Type   | Required   | Description                                                      |
-|-----------|--------|------------|------------------------------------------------------------------|
-| `unit`    | string | ❌ Optional | Distance unit (`mm`, `m`, `km`, `ft`, `yd`, `mi`) - defaults `m` |
+| Parameter | Type   | Required   | Description                                                                                |
+|-----------|--------|------------|--------------------------------------------------------------------------------------------|
+| `unit`    | string | ❌ Optional | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`). Default: `m`. |
 
 **2.2.4. Request Body**
 

@@ -49,7 +49,7 @@ POST {{BASE-URL}}/length/polygon/boundary?unit=m
 Content-Type: application/json
 
 {
-  "coordinates": [
+  "polygon": [
     { "lat": 37.618515, "lng": 126.920021 },
     { "lat": 37.618492, "lng": 126.920078 },
     { "lat": 37.618428, "lng": 126.920135 },
@@ -79,17 +79,17 @@ Content-Type: application/json
 
 **2.2.3. Query Parameters**
 
-| Parameter | Type   | Required   | Description                                                      |
-|-----------|--------|------------|------------------------------------------------------------------|
-| `unit`    | string | ❌ Optional | Distance unit (`mm`, `m`, `km`, `ft`, `yd`, `mi`) - defaults `m` |
+| Parameter | Type   | Required   | Description                                                                                |
+|-----------|--------|------------|--------------------------------------------------------------------------------------------|
+| `unit`    | string | ❌ Optional | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`). Default: `m`. |
 
 **2.2.4. Request Body**
 
-| Field         | Type   | Required | Description                                                                        |
-|---------------|--------|----------|------------------------------------------------------------------------------------|
-| `coordinates` | array  | ✅ Yes    | An ordered list of geographic points defining the vertices of a polygonal boundary |
-| └ `lat`       | number | ✅ Yes    | Latitude of the coordinate                                                         |
-| └ `lng`       | number | ✅ Yes    | Longitude of the coordinate                                                        |
+| Field     | Type   | Required | Description                                           |
+|-----------|--------|----------|-------------------------------------------------------|
+| `polygon` | array  | ✅ Yes    | List of coordinates representing the polygon boundary |
+| └ `lat`   | number | ✅ Yes    | Latitude of the coordinate                            |
+| └ `lng`   | number | ✅ Yes    | Longitude of the coordinate                           |
 
 > If the polygon is not closed, the API will automatically add a final segment connecting the last point to the first.
 

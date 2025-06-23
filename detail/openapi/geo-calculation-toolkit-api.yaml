@@ -1,0 +1,244 @@
+openapi: 3.0.3
+info:
+  title: Geo Calculation Toolkit API
+  description: |
+    Geo Calculation Toolkit is a utility-focused API suite for working with geographic coordinates and shapes.
+  version: 1.0.0
+servers:
+  - url: https://geo-calculation-toolkit-api.p.rapidapi.com
+    description: Rapid API
+
+paths:
+  /distance/between-coordinates:
+    post:
+      tags: [ Distance Calculation ]
+      summary: Distance between two coordinates
+      description: This is an HTTP API that calculates the straight-line surface distance between two geographic coordinates.
+      parameters:
+        - in: query
+          name: unit
+          description: Distance unit (`mm`, `m`, `km`, `ft`, `yd`, `mi`) - defaults `m`
+          required: false
+          schema:
+            type: string
+            enum: [ mm, m, km, ft, yd, mi ]
+            default: m
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ fromCoordinate, toCoordinate ]
+              properties:
+                fromCoordinate:
+                  type: object
+                  required: [ lat, lng ]
+                  properties:
+                    lat:
+                      type: number
+                      format: double
+                      example: 37.618515
+                      description: Latitude of the starting point
+                    lng:
+                      type: number
+                      format: double
+                      example: 126.920021
+                      description: Longitude of the starting point
+                toCoordinate:
+                  type: object
+                  required: [ lat, lng ]
+                  properties:
+                    lat:
+                      type: number
+                      format: double
+                      example: 37.618385
+                      description: Latitude of the destination point
+                    lng:
+                      type: number
+                      format: double
+                      example: 126.920339
+                      description: Longitude of the destination point
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [ success, data ]
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    required: [ distance, unit ]
+                    properties:
+                      distance:
+                        type: number
+                        format: double
+                        example: 31.4989
+                        description: Distance between coordinates (4 decimal precision)
+                      unit:
+                        type: string
+                        example: m
+                        description: Unit of measurement (mm, m, km, ft, yd, mi)
+  /distance/from-point-to-line/shortest:
+    post:
+      tags: [ Distance Calculation ]
+      summary: Shortest distance from a coordinate to a line
+      description: This is an HTTP API that calculates the shortest surface distance from a given coordinate to a straight line defined by two geographic points.
+      parameters:
+        - in: query
+          name: unit
+          description: Distance unit (`mm`, `m`, `km`, `ft`, `yd`, `mi`) - defaults `m`
+          required: false
+          schema:
+            type: string
+            enum: [ mm, m, km, ft, yd, mi ]
+            default: m
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ coordinate, line ]
+              properties:
+                coordinate:
+                  type: object
+                  required: [ lat, lng ]
+                  properties:
+                    lat:
+                      type: number
+                      format: double
+                      example: 37.618500
+                      description: Latitude of the input point
+                    lng:
+                      type: number
+                      format: double
+                      example: 126.920300
+                      description: Longitude of the input point
+                line:
+                  type: array
+                  minItems: 2
+                  maxItems: 2
+                  items:
+                    type: object
+                    required: [ lat, lng ]
+                    properties:
+                      lat:
+                        type: number
+                        format: double
+                        example: 37.618515
+                        description: Latitude of the line point
+                      lng:
+                        type: number
+                        format: double
+                        example: 126.920021
+                        description: Longitude of the line point
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [ success, data ]
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    required: [ distance, unit ]
+                    properties:
+                      distance:
+                        type: number
+                        format: double
+                        example: 9.7817
+                        description: Shortest surface distance from the input coordinate to the line (4 decimal precision)
+                      unit:
+                        type: string
+                        example: m
+                        description: Unit of measurement (mm, m, km, ft, yd, mi)
+  /distance/from-point-to-line/perpendicular:
+    post:
+      tags: [ Distance Calculation ]
+      summary: Perpendicular distance from a coordinate to a line
+      description: This is an HTTP API that calculates the perpendicular surface distance from a given coordinate to a straight line extended through two geographic points.
+      parameters:
+        - in: query
+          name: unit
+          description: Distance unit (`mm`, `m`, `km`, `ft`, `yd`, `mi`) - defaults `m`
+          required: false
+          schema:
+            type: string
+            enum: [ mm, m, km, ft, yd, mi ]
+            default: m
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ coordinate, line ]
+              properties:
+                coordinate:
+                  type: object
+                  required: [ lat, lng ]
+                  properties:
+                    lat:
+                      type: number
+                      format: double
+                      example: 37.618630
+                      description: Latitude of the input point
+                    lng:
+                      type: number
+                      format: double
+                      example: 126.920004
+                      description: Longitude of the input point
+                line:
+                  type: array
+                  minItems: 2
+                  maxItems: 2
+                  items:
+                    type: object
+                    required: [ lat, lng ]
+                    properties:
+                      lat:
+                        type: number
+                        format: double
+                        example: 37.618515
+                        description: Latitude of the line point
+                      lng:
+                        type: number
+                        format: double
+                        example: 126.920021
+                        description: Longitude of the line point
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [ success, data ]
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    required: [ distance, unit ]
+                    properties:
+                      distance:
+                        type: number
+                        format: double
+                        example: 10.6699
+                        description: Shortest perpendicular surface distance from the input coordinate to the line (4 decimal precision)
+                      unit:
+                        type: string
+                        example: m
+                        description: Unit of measurement (mm, m, km, ft, yd, mi)
