@@ -25,11 +25,14 @@ This is an HTTP API that calculates the total surface distance along a polyline 
 
 ![total-length-of-a-polyline](./img/total-length-of-a-polyline.png)
 
-This image shows how the API calculates the total distance of a polyline made up of multiple connected line segments.
-The entire polyline is labeled as A. It consists of several segments, each marked with a tag such as A-1, A-2, and A-3.
-Each segment connects two consecutive geographic coordinates and represents one part of the overall path.
+This image provides a visual explanation of how the API calculates the total surface length of a polyline composed of multiple geographic coordinates.
+The polyline is labeled as segment group A, which is divided into smaller segments such as A-1, A-2, and A-3, each connecting two consecutive coordinates.
 
-The API calculates the total surface distance by adding up the lengths of all segments that make up polyline A.
+- Segment A-1 connects the first and second coordinates and contributes to the overall length.
+- Segment A-2 connects the second and third coordinates.
+- Segment A-3 connects the third and fourth coordinates.
+
+This API takes a polyline represented by a list of geographic coordinates as input, and returns the total surface length by summing the individual lengths of all consecutive segments.
 
 ---
 
@@ -113,14 +116,14 @@ Content-Type: application/json
 ### 4.1. Error Response Example
 
 ```http request
-400 Bad Request
+500 Internal Server Error
 Content-Type: application/json
 
 {
   "success": false,
-  "code": "REQUIRED_PARAMETER_MISSING",
-  "message": "Required parameter is missing.",
-  "detailMessage": "Required parameter is missing. (fromCoordinate)"
+  "code": "INTERNAL_SERVER_ERROR",
+  "message": "Internal server error occurred.",
+  "detailMessage": "Please try again later. (An error occurred in the internal calculation logic.)"
 }
 ```
 

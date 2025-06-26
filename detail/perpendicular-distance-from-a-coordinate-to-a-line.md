@@ -126,14 +126,14 @@ Content-Type: application/json
 ### 4.1. Error Response Example
 
 ```http request
-400 Bad Request
+500 Internal Server Error
 Content-Type: application/json
 
 {
   "success": false,
-  "code": "REQUIRED_PARAMETER_MISSING",
-  "message": "Required parameter is missing.",
-  "detailMessage": "Required parameter is missing. (fromCoordinate)"
+  "code": "INTERNAL_SERVER_ERROR",
+  "message": "Internal server error occurred.",
+  "detailMessage": "Please try again later. (An error occurred in the internal calculation logic.)"
 }
 ```
 

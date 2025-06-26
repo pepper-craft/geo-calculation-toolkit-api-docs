@@ -8,3 +8,4 @@
 | 400         | `LONGITUDE_OUT_OF_RANGE`          | Longitude (lng) must be between -180 and 180 degrees. | The specified longitude is outside the valid geographic range.                      |
 | 400         | `GEO_LINE_MINIMUM_COORDINATES`    | Geo Line must have at least 2 coordinates.            | A polyline must consist of at least two coordinate points to form a valid line.     |
 | 400         | `GEO_POLYGON_MINIMUM_COORDINATES` | Geo Polygon must have at least 3 coordinates.         | A polygon must include at least three coordinate points to form a closed shape.     |
+| 500         | `INTERNAL_SERVER_ERROR`           | Internal server error occurred.                       | An unexpected condition was encountered on the server. Try again later.             |
