@@ -25,12 +25,14 @@ This is an HTTP API that returns the closest point on a line segment defined by 
 
 ![closest-point-on-a-line-from-a-coordinate](./img/closest-point-on-a-line-from-a-coordinate.png)
 
-This image shows how the API determines the closest point on a line segment defined by two geographic coordinates.
-The segment labeled C represents the reference line.
-Points A and B are input coordinates, and the API computes the nearest point located on line C for each of them.
-These projected points are marked as D and E respectively, and the lines from A to D and from B to E indicate the shortest surface distances.
+This image illustrates how the API determines the closest point on a line segment from a given geographic coordinate, and calculates the shortest surface distance between them.
+The line segment, labeled as C, is defined by two geographic endpoints.
 
-The API returns the geographic coordinate of the closest point on the line for the input position.
+- Point A is closest to point D, which lies at one end of line C.
+- Point B is closest to point E, located along the segment.
+- The API finds the point on line C that is geographically closest to the input coordinate.
+
+This API takes a coordinate and a line segment (C) defined by two geographic points as input, and returns the coordinate on the segment that is closest to the input point.
 
 ---
 

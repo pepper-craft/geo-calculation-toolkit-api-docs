@@ -62,9 +62,9 @@ Content-Type: application/json
 
 **2.2.1. Base Endpoint Info**
 
-| API Provider Platform | Method | BASE-URL(HTTP Protocol + Host)                       | Path                             |
-|:---------------------:|:------:|------------------------------------------------------|:---------------------------------|
-|       Rapid API       |  POST  | `https://geo-calculation-toolkit-api.p.rapidapi.com` | `/coordinate/perpendicular-foot` |
+| API Provider Platform | Method | BASE-URL(HTTP Protocol + Host)                       | Path                                 |
+|:---------------------:|:------:|------------------------------------------------------|:-------------------------------------|
+|       Rapid API       |  POST  | `https://geo-calculation-toolkit-api.p.rapidapi.com` | `/coordinate/move-toward-coordinate` |
 
 **2.2.2. Request Headers**
 

@@ -25,13 +25,13 @@ This is an HTTP API that returns the foot of the perpendicular dropped from a gi
 
 ![perpendicular-foot-of-a-coordinate-on-a-line](./img/perpendicular-foot-of-a-coordinate-on-a-line.png)
 
-This image shows how the API calculates the perpendicular foot of a coordinate on a line defined by two geographic points.
-The segment labeled C represents the input line.
-Points A and B are input coordinates, and the API computes the point on the line where a perpendicular from each input coordinate would intersect.
-These intersection points—known as the perpendicular feet—are marked as D and E.
-Note that the input line is treated as extending infinitely in both directions, even beyond its endpoints, to allow for perpendicular projection from any input coordinate.
+This image illustrates how the API calculates the perpendicular surface distance from a given coordinate to a line labeled as C, which is defined by two geographic points and extended infinitely in both directions.
 
-The API returns the geographic coordinate of the perpendicular foot from the given point.
+- Point A projects perpendicularly onto the extended line at point D
+- Point B projects onto the original segment at point E
+- The perpendicular distance is the shortest surface distance from the input coordinate to the infinite straight line defined by line C
+
+This API takes a coordinate and a line (C) defined by two geographic points as input, and returns the geographic coordinate of the perpendicular foot located on the extended line.
 
 ---
 
