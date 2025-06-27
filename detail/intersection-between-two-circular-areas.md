@@ -42,7 +42,7 @@ POST {{BASE-URL}}/intersection/circle-pair
 Content-Type: application/json
 
 {
-  "sourceCircle": {
+  "circle1": {
     "centerCoordinate": {
       "lat": 37.618492,
       "lng": 126.920078
@@ -50,7 +50,7 @@ Content-Type: application/json
     "radius": 200,
     "radiusUnit": "m"
   },
-  "targetCircle": {
+  "circle2": {
     "centerCoordinate": {
       "lat": 37.619410,
       "lng": 126.921330
@@ -81,13 +81,13 @@ Content-Type: application/json
 
 | Field                | Type   | Required   | Description                                                  |
 |----------------------|--------|------------|--------------------------------------------------------------|
-| `sourceCircle`       | object | ✅ Yes      | The first circle to check for intersection                   |
+| `circle1`            | object | ✅ Yes      | The first circle to check for intersection                   |
 | └ `centerCoordinate` | object | ✅ Yes      | Center point of the first circle                             |
 | └─ `lat`             | number | ✅ Yes      | Latitude of the center                                       |
 | └─ `lng`             | number | ✅ Yes      | Longitude of the center                                      |
 | └ `radius`           | number | ✅ Yes      | Radius of the first circle                                   |
 | └ `radiusUnit`       | string | ❌ Optional | Unit of the radius (`mm`, `m`, `km`, etc.) — defaults to `m` |
-| `targetCircle`       | object | ✅ Yes      | The second circle to compare with                            |
+| `circle2`            | object | ✅ Yes      | The second circle to compare with                            |
 | └ `centerCoordinate` | object | ✅ Yes      | Center point of the second circle                            |
 | └─ `lat`             | number | ✅ Yes      | Latitude of the center                                       |
 | └─ `lng`             | number | ✅ Yes      | Longitude of the center                                      |

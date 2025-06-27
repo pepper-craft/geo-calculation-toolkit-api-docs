@@ -43,7 +43,7 @@ Content-Type: application/json
 
 {
   "circle": {
-    "coordinate": {
+    "centerCoordinate": {
       "lat": 37.618492,
       "lng": 126.920078
     },
@@ -77,14 +77,14 @@ Content-Type: application/json
 
 **2.2.4. Request Body**
 
-| Field          | Type   | Required   | Description                                                              |
-|----------------|--------|------------|--------------------------------------------------------------------------|
-| `circle`       | object | ✅ Yes      | Definition of the circular area                                          |
-| └ `coordinate` | object | ✅ Yes      | Center point of the circle                                               |
-| └─ `lat`       | number | ✅ Yes      | Latitude of the center                                                   |
-| └─ `lng`       | number | ✅ Yes      | Longitude of the center                                                  |
-| └ `radius`     | number | ✅ Yes      | Radius length of the circle                                              |
-| └ `radiusUnit` | string | ❌ Optional | Unit of the radius (`mm`, `cm`, `m`, `km`, `ft`, `mi`) - defaults to `m` |
+| Field                | Type   | Required   | Description                                                              |
+|----------------------|--------|------------|--------------------------------------------------------------------------|
+| `circle`             | object | ✅ Yes      | Definition of the circular area                                          |
+| └ `centerCoordinate` | object | ✅ Yes      | Center point of the circle                                               |
+| └─ `lat`             | number | ✅ Yes      | Latitude of the center                                                   |
+| └─ `lng`             | number | ✅ Yes      | Longitude of the center                                                  |
+| └ `radius`           | number | ✅ Yes      | Radius length of the circle                                              |
+| └ `radiusUnit`       | string | ❌ Optional | Unit of the radius (`mm`, `cm`, `m`, `km`, `ft`, `mi`) - defaults to `m` |
 
 ---
 

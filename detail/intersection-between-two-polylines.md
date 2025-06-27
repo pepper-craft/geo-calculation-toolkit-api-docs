@@ -43,19 +43,15 @@ POST {{BASE-URL}}/intersection/polyline-pair
 Content-Type: application/json
 
 {
-  "sourcePolyline": {
-    "coordinates": [
-      { "lat": 37.618100, "lng": 126.920100 },
-      { "lat": 37.617900, "lng": 126.920500 },
-      { "lat": 37.617700, "lng": 126.920900 }
-    ]
-  },
-  "targetPolyline": {
-    "coordinates": [
-      { "lat": 37.617800, "lng": 126.920000 },
-      { "lat": 37.618000, "lng": 126.920600 }
-    ]
-  }
+  "polyline1": [
+    { "lat": 37.618100, "lng": 126.920100 },
+    { "lat": 37.617900, "lng": 126.920500 },
+    { "lat": 37.617700, "lng": 126.920900 }
+  ],
+  "polyline2": [
+    { "lat": 37.617800, "lng": 126.920000 },
+    { "lat": 37.618000, "lng": 126.920600 }
+  ]
 }
 ```
 
@@ -77,16 +73,14 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field            | Type   | Required | Description                                             |
-|------------------|--------|----------|---------------------------------------------------------|
-| `sourcePolyline` | object | ✅ Yes    | The first polyline to be compared                       |
-| └ `coordinates`  | array  | ✅ Yes    | Ordered list of coordinates forming the first polyline  |
-| └─ `lat`         | number | ✅ Yes    | Latitude of a vertex                                    |
-| └─ `lng`         | number | ✅ Yes    | Longitude of a vertex                                   |
-| `targetPolyline` | object | ✅ Yes    | The second polyline to be compared                      |
-| └ `coordinates`  | array  | ✅ Yes    | Ordered list of coordinates forming the second polyline |
-| └─ `lat`         | number | ✅ Yes    | Latitude of a vertex                                    |
-| └─ `lng`         | number | ✅ Yes    | Longitude of a vertex                                   |
+| Field       | Type   | Required | Description                                                   |
+|-------------|--------|----------|---------------------------------------------------------------|
+| `polyline1` | array  | ✅ Yes    | First polyline represented as an ordered list of coordinates  |
+| └ `lat`     | number | ✅ Yes    | Latitude of a vertex                                          |
+| └ `lng`     | number | ✅ Yes    | Longitude of a vertex                                         |
+| `polyline2` | array  | ✅ Yes    | Second polyline represented as an ordered list of coordinates |
+| └ `lat`     | number | ✅ Yes    | Latitude of a vertex                                          |
+| └ `lng`     | number | ✅ Yes    | Longitude of a vertex                                         |
 
 ---
 

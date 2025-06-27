@@ -43,11 +43,11 @@ POST {{BASE-URL}}/distance/between-coordinates?unit=m
 Content-Type: application/json
 
 {
-  "fromCoordinate": {
+  "coordinate1": {
     "lat": 37.618515,
     "lng": 126.920021
   },
-  "toCoordinate": {
+  "coordinate2": {
     "lat": 37.618385,
     "lng": 126.920339
   }
@@ -78,14 +78,14 @@ Content-Type: application/json
 
 **2.2.4. Request Body**
 
-| Field            | Type   | Required | Description                        |
-|------------------|--------|----------|------------------------------------|
-| `fromCoordinate` | object | ✅ Yes    | Starting point coordinates         |
-| └`lat`           | number | ✅ Yes    | Latitude of the starting point     |
-| └`lng`           | number | ✅ Yes    | Longitude of the starting point    |
-| `toCoordinate`   | object | ✅ Yes    | Destination point coordinates      |
-| └`lat`           | number | ✅ Yes    | Latitude of the destination point  |
-| └`lng`           | number | ✅ Yes    | Longitude of the destination point |
+| Field         | Type   | Required | Description                   |
+|---------------|--------|----------|-------------------------------|
+| `coordinate1` | object | ✅ Yes    | First geographic coordinate   |
+| └`lat`        | number | ✅ Yes    | Latitude of the first point   |
+| └`lng`        | number | ✅ Yes    | Longitude of the first point  |
+| `coordinate2` | object | ✅ Yes    | Second geographic coordinate  |
+| └`lat`        | number | ✅ Yes    | Latitude of the second point  |
+| └`lng`        | number | ✅ Yes    | Longitude of the second point |
 
 ---
 

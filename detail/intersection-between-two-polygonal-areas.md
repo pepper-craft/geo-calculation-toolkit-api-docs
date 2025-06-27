@@ -43,22 +43,18 @@ POST {{BASE-URL}}/intersection/polygon-pair
 Content-Type: application/json
 
 {
-  "sourcePolygon": {
-    "coordinates": [
-      { "lat": 37.618000, "lng": 126.920000 },
-      { "lat": 37.618000, "lng": 126.921000 },
-      { "lat": 37.617000, "lng": 126.921000 },
-      { "lat": 37.617000, "lng": 126.920000 }
-    ]
-  },
-  "targetPolygon": {
-    "coordinates": [
-      { "lat": 37.617500, "lng": 126.920500 },
-      { "lat": 37.617500, "lng": 126.921500 },
-      { "lat": 37.616500, "lng": 126.921500 },
-      { "lat": 37.616500, "lng": 126.920500 }
-    ]
-  }
+  "polygon1": [
+    { "lat": 37.618000, "lng": 126.920000 },
+    { "lat": 37.618000, "lng": 126.921000 },
+    { "lat": 37.617000, "lng": 126.921000 },
+    { "lat": 37.617000, "lng": 126.920000 }
+  ],
+  "polygon2": [
+    { "lat": 37.617500, "lng": 126.920500 },
+    { "lat": 37.617500, "lng": 126.921500 },
+    { "lat": 37.616500, "lng": 126.921500 },
+    { "lat": 37.616500, "lng": 126.920500 }
+  ]
 }
 ```
 
@@ -80,16 +76,14 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field           | Type   | Required | Description                                                       |
-|-----------------|--------|----------|-------------------------------------------------------------------|
-| `sourcePolygon` | object | ✅ Yes    | First polygon whose intersection is to be tested                  |
-| └ `coordinates` | array  | ✅ Yes    | Ordered list of geographic coordinates forming the source polygon |
-| └─ `lat`        | number | ✅ Yes    | Latitude of each vertex                                           |
-| └─ `lng`        | number | ✅ Yes    | Longitude of each vertex                                          |
-| `targetPolygon` | object | ✅ Yes    | Second polygon for intersection comparison                        |
-| └ `coordinates` | array  | ✅ Yes    | Ordered list of geographic coordinates forming the target polygon |
-| └─ `lat`        | number | ✅ Yes    | Latitude of each vertex                                           |
-| └─ `lng`        | number | ✅ Yes    | Longitude of each vertex                                          |
+| Field      | Type   | Required | Description                                         |
+|------------|--------|----------|-----------------------------------------------------|
+| `polygon1` | array  | ✅ Yes    | First polygon represented as a list of coordinates  |
+| └ `lat`    | number | ✅ Yes    | Latitude of each vertex                             |
+| └ `lng`    | number | ✅ Yes    | Longitude of each vertex                            |
+| `polygon2` | array  | ✅ Yes    | Second polygon represented as a list of coordinates |
+| └ `lat`    | number | ✅ Yes    | Latitude of each vertex                             |
+| └ `lng`    | number | ✅ Yes    | Longitude of each vertex                            |
 
 > If the polygon is not closed, the API will automatically add a final segment connecting the last point to the first.
 

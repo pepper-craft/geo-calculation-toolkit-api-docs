@@ -45,7 +45,7 @@ POST {{BASE-URL}}/coordinate/move-in-bearing
 Content-Type: application/json
 
 {
-  "coordinate": {
+  "fromCoordinate": {
     "lat": 37.618492,
     "lng": 126.920078
   },
@@ -73,14 +73,14 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field          | Type   | Required   | Description                                               |
-|----------------|--------|------------|-----------------------------------------------------------|
-| `coordinate`   | object | ✅ Yes      | Starting point from which the movement begins             |
-| └ `lat`        | number | ✅ Yes      | Latitude of the starting coordinate                       |
-| └ `lng`        | number | ✅ Yes      | Longitude of the starting coordinate                      |
-| `bearing`      | number | ✅ Yes      | Bearing in degrees (0–360), where 0° is true north        |
-| `distance`     | number | ✅ Yes      | Distance to move along the bearing                        |
-| `distanceUnit` | string | ❌ Optional | Unit of distance (`mm`, `m`, `km`, etc.). Defaults to `m` |
+| Field            | Type   | Required   | Description                                               |
+|------------------|--------|------------|-----------------------------------------------------------|
+| `fromCoordinate` | object | ✅ Yes      | Starting point from which the movement begins             |
+| └ `lat`          | number | ✅ Yes      | Latitude of the starting coordinate                       |
+| └ `lng`          | number | ✅ Yes      | Longitude of the starting coordinate                      |
+| `bearing`        | number | ✅ Yes      | Bearing in degrees (0–360), where 0° is true north        |
+| `distance`       | number | ✅ Yes      | Distance to move along the bearing                        |
+| `distanceUnit`   | string | ❌ Optional | Unit of distance (`mm`, `m`, `km`, etc.). Defaults to `m` |
 
 ---
 
