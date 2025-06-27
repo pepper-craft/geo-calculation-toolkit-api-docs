@@ -1,6 +1,6 @@
 ## Closest point on a line from a coordinate
 
-This is an HTTP API that returns the closest point on a line segment defined by two geographic coordinates, given a specific input coordinate.
+This is an HTTP API that finds the closest point on a given line segment from an input coordinate.
 
 ---
 
@@ -25,14 +25,14 @@ This is an HTTP API that returns the closest point on a line segment defined by 
 
 ![closest-point-on-a-line-from-a-coordinate](./img/closest-point-on-a-line-from-a-coordinate.png)
 
-This image illustrates how the API determines the closest point on a line segment from a given geographic coordinate, and calculates the shortest surface distance between them.
-The line segment, labeled as C, is defined by two geographic endpoints.
+This image illustrates how the API calculates the closest point on a single line segment from a given coordinate.
 
-- Point A is closest to point D, which lies at one end of line C.
-- Point B is closest to point E, located along the segment.
-- The API finds the point on line C that is geographically closest to the input coordinate.
+- Coordinates (e.g., points A, B) are input locations
+- A single line segment (labeled C) connects two endpoints
+- The API identifies the point on the segment that is closest to the input coordinate
+- That closest point (e.g., D or E) is marked on the segment
 
-This API takes a coordinate and a line segment (C) defined by two geographic points as input, and returns the coordinate on the segment that is closest to the input point.
+The API returns the geographic coordinate (such as point D or E) that lies on the line segment (C) and is closest to the input coordinate.
 
 ---
 
@@ -80,14 +80,14 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field        | Type   | Required | Description                                                  |
-|--------------|--------|----------|--------------------------------------------------------------|
-| `coordinate` | object | ✅ Yes    | The reference point for which the nearest location is sought |
-| └ `lat`      | number | ✅ Yes    | Latitude of the input point                                  |
-| └ `lng`      | number | ✅ Yes    | Longitude of the input point                                 |
-| `line`       | array  | ✅ Yes    | Line segment represented by two coordinates                  |
-| └ `lat`      | number | ✅ Yes    | Latitude of the starting point                               |
-| └ `lng`      | number | ✅ Yes    | Longitude of the starting point                              |
+| Field        | Type   | Required | Description                                                |
+|--------------|--------|----------|------------------------------------------------------------|
+| `coordinate` | object | ✅ Yes    | The input point from which the closest point is calculated |
+| └ `lat`      | number | ✅ Yes    | Latitude of the input coordinate                           |
+| └ `lng`      | number | ✅ Yes    | Longitude of the input coordinate                          |
+| `line`       | array  | ✅ Yes    | A single line segment defined by exactly two coordinates   |
+| └ `lat`      | number | ✅ Yes    | Latitude of an endpoint of the line segment                |
+| └ `lng`      | number | ✅ Yes    | Longitude of an endpoint of the line segment               |
 
 ---
 
@@ -109,13 +109,13 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field          | Type    | Nullable | Description                                                     |
-|----------------|---------|----------|-----------------------------------------------------------------|
-| `success`      | boolean | ❌ No     | Indicates whether the operation succeeded                       |
-| `data`         | object  | ❌ No     | Included only when `success` is `true`                          |
-| └ `coordinate` | object  | ❌ No     | The closest point on the line segment from the input coordinate |
-| └─ `lat`       | number  | ❌ No     | Latitude of the closest point on the line                       |
-| └─ `lng`       | number  | ❌ No     | Longitude of the closest point on the line                      |
+| Field          | Type    | Nullable | Description                                                           |
+|----------------|---------|----------|-----------------------------------------------------------------------|
+| `success`      | boolean | ❌ No     | Indicates whether the operation succeeded                             |
+| `data`         | object  | ❌ No     | Included only when `success` is `true`                                |
+| └ `coordinate` | object  | ❌ No     | The point on the line segment that is closest to the input coordinate |
+| └─ `lat`       | number  | ❌ No     | Latitude of the closest point on the line segment                     |
+| └─ `lng`       | number  | ❌ No     | Longitude of the closest point on the line segment                    |
 
 ---
 

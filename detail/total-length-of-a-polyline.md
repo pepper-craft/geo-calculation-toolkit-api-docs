@@ -1,6 +1,6 @@
 ## Total length of a polyline
 
-This is an HTTP API that calculates the total surface distance along a polyline formed by multiple geographic coordinates.
+This is an HTTP API that calculates the total geographic length of a given polyline.
 
 ---
 
@@ -25,14 +25,13 @@ This is an HTTP API that calculates the total surface distance along a polyline 
 
 ![total-length-of-a-polyline](./img/total-length-of-a-polyline.png)
 
-This image provides a visual explanation of how the API calculates the total surface length of a polyline composed of multiple geographic coordinates.
-The polyline is labeled as segment group A, which is divided into smaller segments such as A-1, A-2, and A-3, each connecting two consecutive coordinates.
+This image illustrates how the API computes the total length of a polyline by summing the distances between consecutive points.
 
-- Segment A-1 connects the first and second coordinates and contributes to the overall length.
-- Segment A-2 connects the second and third coordinates.
-- Segment A-3 connects the third and fourth coordinates.
+- A polyline is formed by multiple coordinates connected in sequence
+- Each segment's length (e.g., distance 1, 2, 3) is measured individually
+- The total length is the sum of all segment lengths
 
-This API takes a polyline represented by a list of geographic coordinates as input, and returns the total surface length by summing the individual lengths of all consecutive segments.
+The API returns the total length of the polyline in the specified unit.
 
 ---
 
@@ -78,11 +77,11 @@ Content-Type: application/json
 
 **2.2.4. Request Body**
 
-| Field      | Type   | Required | Description                                        |
-|------------|--------|----------|----------------------------------------------------|
-| `polyline` | array  | ✅ Yes    | List of coordinates representing the polyline path |
-| └ `lat`    | number | ✅ Yes    | Latitude of the coordinate                         |
-| └ `lng`    | number | ✅ Yes    | Longitude of the coordinate                        |
+| Field      | Type   | Required | Description                                         |
+|------------|--------|----------|-----------------------------------------------------|
+| `polyline` | array  | ✅ Yes    | An ordered list of coordinates forming the polyline |
+| └ `lat`    | number | ✅ Yes    | Latitude of a point in the polyline                 |
+| └ `lng`    | number | ✅ Yes    | Longitude of a point in the polyline                |
 
 ---
 
@@ -102,12 +101,12 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field      | Type    | Nullable | Description                                                |
-|------------|---------|----------|------------------------------------------------------------|
-| `success`  | boolean | ❌ No     | Indicates whether the operation succeeded                  |
-| `data`     | object  | ❌ No     | Included only when `success` is `true`                     |
-| └ `length` | number  | ❌ No     | Total surface length of the polyline (4 decimal precision) |
-| └ `unit`   | string  | ❌ No     | Unit of measurement (`mm`, `m`, `km`, `ft`, `yd`, `mi`)    |
+| Field      | Type    | Nullable | Description                                                                 |
+|------------|---------|----------|-----------------------------------------------------------------------------|
+| `success`  | boolean | ❌ No     | Indicates whether the operation succeeded                                   |
+| `data`     | object  | ❌ No     | Included only when `success` is `true`                                      |
+| └ `length` | number  | ❌ No     | Total length of the polyline                                                |
+| └ `unit`   | string  | ❌ No     | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) |
 
 ---
 

@@ -1,6 +1,6 @@
 ## Perpendicular foot of a coordinate on a line
 
-This is an HTTP API that returns the foot of the perpendicular dropped from a given coordinate onto a line defined by two geographic points.
+This is an HTTP API that calculates the perpendicular foot of a coordinate on a given line segment.
 
 ---
 
@@ -25,13 +25,14 @@ This is an HTTP API that returns the foot of the perpendicular dropped from a gi
 
 ![perpendicular-foot-of-a-coordinate-on-a-line](./img/perpendicular-foot-of-a-coordinate-on-a-line.png)
 
-This image illustrates how the API calculates the perpendicular surface distance from a given coordinate to a line labeled as C, which is defined by two geographic points and extended infinitely in both directions.
+This image illustrates how the API finds the perpendicular foot from a coordinate onto a line extended from a segment.
 
-- Point A projects perpendicularly onto the extended line at point D
-- Point B projects onto the original segment at point E
-- The perpendicular distance is the shortest surface distance from the input coordinate to the infinite straight line defined by line C
+- Coordinates (e.g., points A, B) are input positions
+- A single line segment (labeled C) connects two endpoints
+- The line is extended if necessary to compute the perpendicular projection
+- The API finds the point on the extended line (e.g., points D or E) where the perpendicular from the input coordinate meets
 
-This API takes a coordinate and a line (C) defined by two geographic points as input, and returns the geographic coordinate of the perpendicular foot located on the extended line.
+The API returns the geographic coordinate (such as point D or E) where a perpendicular line from the input coordinate meets the extended line segment.
 
 ---
 
@@ -79,14 +80,14 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field        | Type   | Required | Description                                                                       |
-|--------------|--------|----------|-----------------------------------------------------------------------------------|
-| `coordinate` | object | ✅ Yes    | The input coordinate used to calculate its perpendicular projection onto the line |
-| └ `lat`      | number | ✅ Yes    | Latitude of the input point                                                       |
-| └ `lng`      | number | ✅ Yes    | Longitude of the input point                                                      |
-| `line`       | array  | ✅ Yes    | Line segment represented by two coordinates                                       |
-| └ `lat`      | number | ✅ Yes    | Latitude of the starting point                                                    |
-| └ `lng`      | number | ✅ Yes    | Longitude of the starting point                                                   |                                                  |
+| Field        | Type   | Required | Description                                                   |
+|--------------|--------|----------|---------------------------------------------------------------|
+| `coordinate` | object | ✅ Yes    | The input point from which the perpendicular foot is computed |
+| └ `lat`      | number | ✅ Yes    | Latitude of the input coordinate                              |
+| └ `lng`      | number | ✅ Yes    | Longitude of the input coordinate                             |
+| `line`       | array  | ✅ Yes    | A single line segment defined by exactly two coordinates      |
+| └ `lat`      | number | ✅ Yes    | Latitude of an endpoint of the line segment                   |
+| └ `lng`      | number | ✅ Yes    | Longitude of an endpoint of the line segment                  |
 
 ---
 
@@ -108,13 +109,13 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field          | Type    | Nullable | Description                                                              |
-|----------------|---------|----------|--------------------------------------------------------------------------|
-| `success`      | boolean | ❌ No     | Indicates whether the operation succeeded                                |
-| `data`         | object  | ❌ No     | Included only when `success` is `true`                                   |
-| └ `coordinate` | object  | ❌ No     | The geographic coordinate of the perpendicular foot on the extended line |
-| └─ `lat`       | number  | ❌ No     | Latitude of the perpendicular foot                                       |
-| └─ `lng`       | number  | ❌ No     | Longitude of the perpendicular foot                                      |
+| Field          | Type    | Nullable | Description                                                                        |
+|----------------|---------|----------|------------------------------------------------------------------------------------|
+| `success`      | boolean | ❌ No     | Indicates whether the operation succeeded                                          |
+| `data`         | object  | ❌ No     | Included only when `success` is `true`                                             |
+| └ `coordinate` | object  | ❌ No     | The perpendicular foot of the input coordinate on the extended line of the segment |
+| └─ `lat`       | number  | ❌ No     | Latitude of the perpendicular foot                                                 |
+| └─ `lng`       | number  | ❌ No     | Longitude of the perpendicular foot                                                |
 
 ---
 

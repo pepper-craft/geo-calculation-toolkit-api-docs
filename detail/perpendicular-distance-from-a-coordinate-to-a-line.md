@@ -1,6 +1,6 @@
 ## Perpendicular distance from a coordinate to a line
 
-This is an HTTP API that calculates the perpendicular surface distance from a given coordinate to a straight line extended through two geographic points.
+This is an HTTP API that calculates the perpendicular distance from a coordinate to a specified line segment.
 
 ---
 
@@ -25,13 +25,14 @@ This is an HTTP API that calculates the perpendicular surface distance from a gi
 
 ![perpendicular-distance-from-a-coordinate-to-a-line](./img/perpendicular-distance-from-a-coordinate-to-a-line.png)
 
-This image provides a visual explanation of how the API calculates the perpendicular surface distance from a coordinate to a line extended through two geographic points.
-Here, point A and point B are specific geographic locations defined by latitude and longitude. The line C represents a straight line segment defined by two coordinates, which may be extended beyond its endpoints.
+This image illustrates how coordinates (points A and B) are projected perpendicularly onto a line to find their foot points (e.g., points D and E).
 
-- For point A, the perpendicular distance is calculated to point D, which lies on the extension of the input line.
-- For point B, the perpendicular intersects the line directly at point E, which lies on the original segment.
+- Coordinates A and B are labeled as input points for which perpendicular distances are computed.
+- The line segment used for projection is labeled as C.
+- The line can be extended beyond its original endpoints if necessary to reach the perpendicular foot.
+- The perpendicular foot is computed for each coordinate along with its shortest distance to the line.
 
-This API takes a single coordinate and a line defined by two coordinates as input, and returns the shortest perpendicular surface distance from the point to the infinite line that passes through the given two points.
+The API returns the perpendicular distance from the input coordinate to the nearest point on the specified line, along with the unit of measurement.
 
 ---
 
@@ -85,14 +86,14 @@ Content-Type: application/json
 
 **2.2.4. Request Body**
 
-| Field        | Type   | Required | Description                                                   |
-|--------------|--------|----------|---------------------------------------------------------------|
-| `coordinate` | object | ✅ Yes    | The point from which the shortest distance will be calculated |
-| └ `lat`      | number | ✅ Yes    | Latitude of the input point                                   |
-| └ `lng`      | number | ✅ Yes    | Longitude of the input point                                  |
-| `line`       | array  | ✅ Yes    | Line segment represented by two coordinates                   |
-| └ `lat`      | number | ✅ Yes    | Latitude of the starting point                                |
-| └ `lng`      | number | ✅ Yes    | Longitude of the starting point                               |
+| Field        | Type   | Required | Description                                                             |
+|--------------|--------|----------|-------------------------------------------------------------------------|
+| `coordinate` | object | ✅ Yes    | The reference point from which the perpendicular distance is calculated |
+| └ `lat`      | number | ✅ Yes    | Latitude of the input coordinate                                        |
+| └ `lng`      | number | ✅ Yes    | Longitude of the input coordinate                                       |
+| `line`       | array  | ✅ Yes    | The line segment represented by two coordinates                         |
+| └ `lat`      | number | ✅ Yes    | Latitude of a point on the line                                         |
+| └ `lng`      | number | ✅ Yes    | Longitude of a point on the line                                        |
 
 ---
 
@@ -112,12 +113,12 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field       | Type    | Nullable | Description                                                                                         |
-|-------------|---------|----------|-----------------------------------------------------------------------------------------------------|
-| `success`   | boolean | ❌ No     | Indicates whether the operation succeeded                                                           |
-| `data`      | object  | ❌ No     | Included only when `success` is `true`                                                              |
-| └`distance` | number  | ❌ No     | Shortest perpendicular surface distance from the input coordinate to the line (4 decimal precision) |
-| └`unit`     | string  | ❌ No     | Unit of measurement (`mm`, `m`, `km`, `ft`, `yd`, `mi`)                                             |
+| Field        | Type    | Nullable | Description                                                                                         |
+|--------------|---------|----------|-----------------------------------------------------------------------------------------------------|
+| `success`    | boolean | ❌ No     | Indicates whether the operation succeeded                                                           |
+| `data`       | object  | ❌ No     | Included only when `success` is `true`                                                              |
+| └ `distance` | number  | ❌ No     | Shortest perpendicular surface distance from the input coordinate to the line (4 decimal precision) |
+| └ `unit`     | string  | ❌ No     | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`)                         |
 
 ---
 

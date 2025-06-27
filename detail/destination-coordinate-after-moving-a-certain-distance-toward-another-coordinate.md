@@ -1,6 +1,6 @@
 ## Destination coordinate after moving a certain distance toward another coordinate
 
-This is an HTTP API that calculates the destination coordinate after moving a specific distance from one point toward another point on the Earth's surface.
+This is an HTTP API that calculates the coordinate reached after moving a certain distance from one point toward another point.
 
 ---
 
@@ -25,14 +25,14 @@ This is an HTTP API that calculates the destination coordinate after moving a sp
 
 ![destination-coordinate-after-moving-a-certain-distance-toward-another-coordinate](./img/destination-coordinate-after-moving-a-certain-distance-toward-another-coordinate.png)
 
-This image shows how the API calculates a destination point reached by moving a certain distance from one coordinate toward another.
+This image illustrates how the API determines a new coordinate by moving a specific distance in the direction of another coordinate.
 
-- Point A is the starting coordinate.
-- Point B is the direction target.
-- A specific distance is measured from A toward B.
-- Point C is the result — the geographic coordinate obtained after moving the given distance from A toward B on the Earth's surface.
+- A starting coordinate (point A) serves as the origin
+- A target coordinate (point B) defines the direction
+- A fixed distance is applied along the straight path between A and B
+- The resulting coordinate (point C) lies on the line from A to B at the given distance
 
-The API returns the geographic coordinate reached by moving a specified distance from a starting point toward a target coordinate.
+The API returns the coordinate (point C) that results from moving the specified distance from the starting point toward the destination point.
 
 ---
 
@@ -76,16 +76,16 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field            | Type   | Required   | Description                                                                      |
-|------------------|--------|------------|----------------------------------------------------------------------------------|
-| `fromCoordinate` | object | ✅ Yes      | Starting point from which the movement begins                                    |
-| └ `lat`          | number | ✅ Yes      | Latitude of the starting coordinate                                              |
-| └ `lng`          | number | ✅ Yes      | Longitude of the starting coordinate                                             |
-| `toCoordinate`   | object | ✅ Yes      | Target direction coordinate                                                      |
-| └ `lat`          | number | ✅ Yes      | Latitude of the target coordinate                                                |
-| └ `lng`          | number | ✅ Yes      | Longitude of the target coordinate                                               |
-| `distance`       | number | ✅ Yes      | Distance to move toward the target                                               |
-| `distanceUnit`   | string | ❌ Optional | Unit of the input distance (`mm`, `m`, `km`, `ft`, `yd`, `mi`). Defaults to `m`. |
+| Field            | Type   | Required   | Description                                                                     |
+|------------------|--------|------------|---------------------------------------------------------------------------------|
+| `fromCoordinate` | object | ✅ Yes      | The starting coordinate                                                         |
+| └ `lat`          | number | ✅ Yes      | Latitude of the starting coordinate                                             |
+| └ `lng`          | number | ✅ Yes      | Longitude of the starting coordinate                                            |
+| `toCoordinate`   | object | ✅ Yes      | The coordinate indicating the direction of movement                             |
+| └ `lat`          | number | ✅ Yes      | Latitude of the target coordinate                                               |
+| └ `lng`          | number | ✅ Yes      | Longitude of the target coordinate                                              |
+| `distance`       | number | ✅ Yes      | Distance to move from the starting point                                        |
+| `distanceUnit`   | string | ❌ Optional | Unit of distance (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) (default: `m`) |
 
 ---
 
@@ -107,13 +107,13 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field          | Type    | Nullable | Description                                              |
-|----------------|---------|----------|----------------------------------------------------------|
-| `success`      | boolean | ❌ No     | Indicates whether the operation succeeded                |
-| `data`         | object  | ❌ No     | Included only when `success` is `true`                   |
-| └ `coordinate` | object  | ❌ No     | Resulting coordinate after moving the specified distance |
-| └─ `lat`       | number  | ❌ No     | Latitude of the resulting coordinate                     |
-| └─ `lng`       | number  | ❌ No     | Longitude of the resulting coordinate                    |
+| Field          | Type    | Nullable | Description                                                  |
+|----------------|---------|----------|--------------------------------------------------------------|
+| `success`      | boolean | ❌ No     | Indicates whether the operation succeeded                    |
+| `data`         | object  | ❌ No     | Included only when `success` is `true`                       |
+| └ `coordinate` | object  | ❌ No     | The resulting coordinate after moving the specified distance |
+| └─ `lat`       | number  | ❌ No     | Latitude of the resulting coordinate                         |
+| └─ `lng`       | number  | ❌ No     | Longitude of the resulting coordinate                        |
 
 ---
 

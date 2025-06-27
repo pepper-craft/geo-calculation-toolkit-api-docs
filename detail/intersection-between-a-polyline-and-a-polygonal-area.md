@@ -1,6 +1,6 @@
 ## Intersection between a polyline and a polygonal area
 
-This is an HTTP API that checks whether a given polyline intersects with a polygonal area based on their respective coordinates.
+This is an HTTP API that determines whether a polyline intersects with a polygonal area.
 
 ---
 
@@ -25,13 +25,13 @@ This is an HTTP API that checks whether a given polyline intersects with a polyg
 
 ![intersection-between-a-polyline-and-a-polygonal-area](./img/intersection-between-a-polyline-and-a-polygonal-area.png)
 
-This image shows how the API determines whether a polyline intersects with a polygonal area.
+This image illustrates how the API checks whether a polyline crosses the boundary or interior of a polygon.
 
-- Line A represents a polyline composed of connected segments defined by consecutive geographic coordinates.
-- Shape B represents a polygonal area formed by an ordered sequence of vertices.
-- The zoomed-in view illustrates multiple intersection points where the path of Line A crosses the boundary of Polygon B.
+- A polyline (labeled A) is defined by a sequence of connected coordinates
+- A polygonal area (labeled B) is defined by multiple corner points
+- The intersection points represent locations where the polyline enters or crosses the polygon
 
-The API returns a boolean value indicating whether the polyline and the polygon intersect.
+The API returns a boolean result indicating whether the polyline intersects with the polygonal area.
 
 ---
 
@@ -76,14 +76,14 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field      | Type   | Required | Description                                              |
-|------------|--------|----------|----------------------------------------------------------|
-| `polyline` | array  | ✅ Yes    | Ordered list of coordinates forming the polyline path    |
-| └ `lat`    | number | ✅ Yes    | Latitude of a vertex in the polyline                     |
-| └ `lng`    | number | ✅ Yes    | Longitude of a vertex in the polyline                    |
-| `polygon`  | array  | ✅ Yes    | Ordered list of coordinates forming the polygon boundary |
-| └ `lat`    | number | ✅ Yes    | Latitude of a vertex in the polygon                      |
-| └ `lng`    | number | ✅ Yes    | Longitude of a vertex in the polygon                     |
+| Field      | Type   | Required | Description                              |
+|------------|--------|----------|------------------------------------------|
+| `polyline` | array  | ✅ Yes    | List of coordinates forming the polyline |
+| └ `lat`    | number | ✅ Yes    | Latitude of a point in the polyline      |
+| └ `lng`    | number | ✅ Yes    | Longitude of a point in the polyline     |
+| `polygon`  | array  | ✅ Yes    | List of coordinates defining the polygon |
+| └ `lat`    | number | ✅ Yes    | Latitude of a vertex in the polygon      |
+| └ `lng`    | number | ✅ Yes    | Longitude of a vertex in the polygon     |
 
 ---
 
@@ -102,11 +102,11 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field           | Type    | Nullable | Description                                                             |
-|-----------------|---------|----------|-------------------------------------------------------------------------|
-| `success`       | boolean | ❌ No     | Indicates whether the operation succeeded                               |
-| `data`          | object  | ❌ No     | Included only when `success` is `true`                                  |
-| └ `intersected` | boolean | ❌ No     | `true` if the polyline intersects the polygonal area, otherwise `false` |
+| Field           | Type    | Nullable | Description                                        |
+|-----------------|---------|----------|----------------------------------------------------|
+| `success`       | boolean | ❌ No     | Indicates whether the operation succeeded          |
+| `data`          | object  | ❌ No     | Included only when `success` is `true`             |
+| └ `intersected` | boolean | ❌ No     | Whether the polyline intersects the polygonal area |
 
 ---
 

@@ -1,6 +1,6 @@
 ## Coordinate containment in a circular area
 
-This is an HTTP API that determines whether a given coordinate is inside a circular area defined by a center point and radius.
+This is an HTTP API that determines whether a given coordinate is contained within a circular area.
 
 ---
 
@@ -25,13 +25,13 @@ This is an HTTP API that determines whether a given coordinate is inside a circu
 
 ![coordinate-containment-in-a-circular-area](./img/coordinate-containment-in-a-circular-area.png)
 
-This image shows how the API checks whether a geographic coordinate is contained within a circular area defined by a center coordinate and radius.
+This image illustrates how the API checks whether a coordinate lies inside or outside a circle defined by a center and radius.
 
-- The circular area is represented by the label C and is defined by a central coordinate and a given radius.
-- Point A lies clearly outside the circular area and is not considered contained.
-- Point B is located within the bounds of the circle and is considered contained.
+- A circular area is labeled as C and defined by a center coordinate and radius
+- Input coordinates (e.g., A, B) are evaluated for their spatial relation to the circle
+- The API determines whether the input point is within the radius from the center
 
-The API returns a boolean value indicating whether the input coordinate is located inside the specified circular area.
+The API returns a boolean result indicating whether the coordinate is inside the circular area.
 
 ---
 
@@ -77,17 +77,17 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field                | Type   | Required   | Description                                                       |
-|----------------------|--------|------------|-------------------------------------------------------------------|
-| `coordinate`         | object | ✅ Yes      | The point to check for containment within the circular area       |
-| └ `lat`              | number | ✅ Yes      | Latitude of the input coordinate                                  |
-| └ `lng`              | number | ✅ Yes      | Longitude of the input coordinate                                 |
-| `circle`             | object | ✅ Yes      | The circular area to check against                                |
-| └ `centerCoordinate` | object | ✅ Yes      | The center of the circle                                          |
-| └─ `lat`             | number | ✅ Yes      | Latitude of the circle’s center                                   |
-| └─ `lng`             | number | ✅ Yes      | Longitude of the circle’s center                                  |
-| └ `radius`           | number | ✅ Yes      | Radius of the circle                                              |
-| └ `radiusUnit`       | string | ❌ Optional | Unit of the radius (`mm`, `m`, `km`, `ft`, `mi`), defaults to `m` |
+| Field                | Type   | Required   | Description                                                                   |
+|----------------------|--------|------------|-------------------------------------------------------------------------------|
+| `coordinate`         | object | ✅ Yes      | The point to check for containment within the circle                          |
+| └ `lat`              | number | ✅ Yes      | Latitude of the coordinate                                                    |
+| └ `lng`              | number | ✅ Yes      | Longitude of the coordinate                                                   |
+| `circle`             | object | ✅ Yes      | The circular area definition                                                  |
+| └ `centerCoordinate` | object | ✅ Yes      | The center of the circular area                                               |
+| └─ `lat`             | number | ✅ Yes      | Latitude of the center point                                                  |
+| └─ `lng`             | number | ✅ Yes      | Longitude of the center point                                                 |
+| └ `radius`           | number | ✅ Yes      | Radius of the circle                                                          |
+| └ `radiusUnit`       | string | ❌ Optional | Unit of radius (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) (default: `m`) |
 
 ---
 
@@ -106,11 +106,11 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field         | Type    | Nullable | Description                                                             |
-|---------------|---------|----------|-------------------------------------------------------------------------|
-| `success`     | boolean | ❌ No     | Indicates whether the operation succeeded                               |
-| `data`        | object  | ❌ No     | Included only when `success` is `true`                                  |
-| └ `contained` | boolean | ❌ No     | `true` if the coordinate is inside the circular area, otherwise `false` | 
+| Field         | Type    | Nullable | Description                                        |
+|---------------|---------|----------|----------------------------------------------------|
+| `success`     | boolean | ❌ No     | Indicates whether the operation succeeded          |
+| `data`        | object  | ❌ No     | Included only when `success` is `true`             |
+| └ `contained` | boolean | ❌ No     | Whether the coordinate is inside the circular area |
 
 ---
 

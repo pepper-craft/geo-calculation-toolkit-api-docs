@@ -1,6 +1,6 @@
 ## Coordinate containment in a polygonal area
 
-This is an HTTP API that determines whether a given geographic coordinate is inside a specified polygonal area.
+This is an HTTP API that determines whether a given coordinate is contained within a polygonal area.
 
 ---
 
@@ -25,13 +25,14 @@ This is an HTTP API that determines whether a given geographic coordinate is ins
 
 ![coordinate-containment-in-a-polygonal-area](./img/coordinate-containment-in-a-polygonal-area.png)
 
-This image shows how the API determines whether a given coordinate is contained within a polygonal area defined by multiple geographic coordinates.
+This image illustrates how the API checks whether a point lies inside or outside a polygon.
 
-- The polygonal area is constructed by connecting a sequence of geographic coordinates and is labeled as C in this example.
-- Point A is located clearly outside the polygon and does not touch the boundary.
-- Point B is fully contained within the interior of the polygon.
+- A polygonal area is enclosed by a set of connected coordinates
+- Input coordinates (e.g., A, B) are tested for containment within the polygon
+- The label C visually indicates the entire polygon area
+- The API classifies each point as either inside or outside the polygon
 
-The API returns a boolean value indicating whether the input coordinate is located inside the specified polygonal area.
+The API returns a boolean result indicating whether the given coordinate lies inside the polygonal area.
 
 ---
 
@@ -77,14 +78,14 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field        | Type   | Required | Description                                                         |
-|--------------|--------|----------|---------------------------------------------------------------------|
-| `coordinate` | object | ✅ Yes    | The point to check for containment within the polygonal area        |
-| └ `lat`      | number | ✅ Yes    | Latitude of the input coordinate                                    |
-| └ `lng`      | number | ✅ Yes    | Longitude of the input coordinate                                   |
-| `polygon`    | array  | ✅ Yes    | An ordered list of geographic points forming the polygonal boundary |
-| └ `lat`      | number | ✅ Yes    | Latitude of each vertex in the polygon                              |
-| └ `lng`      | number | ✅ Yes    | Longitude of each vertex in the polygon                             |
+| Field        | Type   | Required | Description                                        |
+|--------------|--------|----------|----------------------------------------------------|
+| `coordinate` | object | ✅ Yes    | The point to check for containment                 |
+| └ `lat`      | number | ✅ Yes    | Latitude of the coordinate                         |
+| └ `lng`      | number | ✅ Yes    | Longitude of the coordinate                        |
+| `polygon`    | array  | ✅ Yes    | An ordered list of coordinates forming the polygon |
+| └ `lat`      | number | ✅ Yes    | Latitude of a vertex                               |
+| └ `lng`      | number | ✅ Yes    | Longitude of a vertex                              |
 
 > If the polygon is not closed, the API will automatically add a final segment connecting the last point to the first.
 
@@ -105,11 +106,11 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field         | Type    | Nullable | Description                                                       |
-|---------------|---------|----------|-------------------------------------------------------------------|
-| `success`     | boolean | ❌ No     | Indicates whether the operation succeeded                         |
-| `data`        | object  | ❌ No     | Included only when `success` is `true`                            |
-| └ `contained` | boolean | ❌ No     | `true` if the coordinate is inside the polygon, otherwise `false` |                    |
+| Field         | Type    | Nullable | Description                                       |
+|---------------|---------|----------|---------------------------------------------------|
+| `success`     | boolean | ❌ No     | Indicates whether the operation succeeded         |
+| `data`        | object  | ❌ No     | Included only when `success` is `true`            |
+| └ `contained` | boolean | ❌ No     | Whether the coordinate is inside the polygon area |
 
 ---
 

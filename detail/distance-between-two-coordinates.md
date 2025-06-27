@@ -1,6 +1,6 @@
 ## Distance between two coordinates
 
-This is an HTTP API that calculates the straight-line surface distance between two geographic coordinates.
+This is an HTTP API that calculates the distance between two geographic coordinates.
 
 ---
 
@@ -25,12 +25,13 @@ This is an HTTP API that calculates the straight-line surface distance between t
 
 ![distance-between-two-coordinates](./img/distance-between-two-coordinates.png)
 
-This image shows how the API calculates the surface distance between two distinct geographic points on Earth.
+This image illustrates the calculation of distance between two coordinates on Earth’s surface.
 
-- Point A and Point B represent two locations defined by latitude and longitude.
-- The arrow between them visually represents the shortest path over the Earth's surface (great-circle distance).
+- Two coordinates labeled A and B are shown on the globe.
+- A zoomed-in view highlights their positions on a flat map and the linear distance between them.
+- The distance is visually represented with a double-arrow labeled "distance".
 
-The API returns the surface distance between the two input coordinates.
+The API returns the calculated distance between the two provided coordinates, based on the specified unit of measurement (default is meters).
 
 ---
 
@@ -78,14 +79,14 @@ Content-Type: application/json
 
 **2.2.4. Request Body**
 
-| Field         | Type   | Required | Description                   |
-|---------------|--------|----------|-------------------------------|
-| `coordinate1` | object | ✅ Yes    | First geographic coordinate   |
-| └`lat`        | number | ✅ Yes    | Latitude of the first point   |
-| └`lng`        | number | ✅ Yes    | Longitude of the first point  |
-| `coordinate2` | object | ✅ Yes    | Second geographic coordinate  |
-| └`lat`        | number | ✅ Yes    | Latitude of the second point  |
-| └`lng`        | number | ✅ Yes    | Longitude of the second point |
+| Field         | Type   | Required | Description                                |
+|---------------|--------|----------|--------------------------------------------|
+| `coordinate1` | object | ✅ Yes    | The first coordinate for distance measure  |
+| └ `lat`       | number | ✅ Yes    | Latitude of the first coordinate           |
+| └ `lng`       | number | ✅ Yes    | Longitude of the first coordinate          |
+| `coordinate2` | object | ✅ Yes    | The second coordinate for distance measure |
+| └ `lat`       | number | ✅ Yes    | Latitude of the second coordinate          |
+| └ `lng`       | number | ✅ Yes    | Longitude of the second coordinate         |
 
 ---
 
@@ -105,12 +106,12 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field       | Type    | Nullable | Description                                             |
-|-------------|---------|----------|---------------------------------------------------------|
-| `success`   | boolean | ❌ No     | Indicates whether the operation succeeded               |
-| `data`      | object  | ❌ No     | Included only when `success` is `true`                  |
-| └`distance` | number  | ❌ No     | Distance between coordinates (4 decimal precision)      |
-| └`unit`     | string  | ❌ No     | Unit of measurement (`mm`, `m`, `km`, `ft`, `yd`, `mi`) |
+| Field        | Type    | Nullable | Description                                                                 |
+|--------------|---------|----------|-----------------------------------------------------------------------------|
+| `success`    | boolean | ❌ No     | Indicates whether the operation succeeded                                   |
+| `data`       | object  | ❌ No     | Included only when `success` is `true`                                      |
+| └ `distance` | number  | ❌ No     | Distance between coordinates (4 decimal precision)                          |
+| └ `unit`     | string  | ❌ No     | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) |
 
 ---
 

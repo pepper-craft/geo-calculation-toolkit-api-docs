@@ -1,6 +1,6 @@
 ## Intersection between a polyline and a circular area
 
-This is an HTTP API that checks whether a given polyline intersects with a circular area defined by a center coordinate and radius.
+This is an HTTP API that determines whether a polyline intersects with a circular area.
 
 ---
 
@@ -25,13 +25,13 @@ This is an HTTP API that checks whether a given polyline intersects with a circu
 
 ![intersection-between-a-polyline-and-a-circular-area](./img/intersection-between-a-polyline-and-a-circular-area.png)
 
-This image shows how the API checks for an intersection between a polyline and a circular area.
+This image illustrates how the API checks if a polyline crosses a circular area.
 
-- The path labeled A is a polyline, made up of multiple connected geographic coordinates.
-- Circle C represents a circular area defined by a center coordinate and a radius.
-- In the zoomed-in view, the black dots represent the intersection points where the polyline crosses the boundary of the circular area.
+- A polyline (labeled A) is drawn as a sequence of connected coordinates
+- A circular area (labeled B) is defined by its center and radius
+- The intersection occurs where the polyline enters or exits the circular boundary
 
-The API returns a boolean value indicating whether the polyline intersects the circular area.
+The API returns a boolean result indicating whether the polyline intersects the circular area.
 
 ---
 
@@ -78,17 +78,17 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field                | Type   | Required   | Description                                                |
-|----------------------|--------|------------|------------------------------------------------------------|
-| `polyline`           | array  | ✅ Yes      | Ordered list of coordinates representing the polyline path |
-| └ `lat`              | number | ✅ Yes      | Latitude of a vertex in the polyline                       |
-| └ `lng`              | number | ✅ Yes      | Longitude of a vertex in the polyline                      |
-| `circle`             | object | ✅ Yes      | Circular area used for intersection comparison             |
-| └ `centerCoordinate` | object | ✅ Yes      | Center of the circle                                       |
-| └─ `lat`             | number | ✅ Yes      | Latitude of the circle's center                            |
-| └─ `lng`             | number | ✅ Yes      | Longitude of the circle's center                           |
-| └ `radius`           | number | ✅ Yes      | Radius of the circle                                       |
-| └ `radiusUnit`       | string | ❌ Optional | Unit of radius (`mm`, `cm`, `m`, `km`, `ft`, `yd`, `mi`)   |
+| Field                | Type   | Required   | Description                                                                   |
+|----------------------|--------|------------|-------------------------------------------------------------------------------|
+| `polyline`           | array  | ✅ Yes      | Coordinates forming the polyline                                              |
+| └ `lat`              | number | ✅ Yes      | Latitude of a point in the polyline                                           |
+| └ `lng`              | number | ✅ Yes      | Longitude of a point in the polyline                                          |
+| `circle`             | object | ✅ Yes      | The circular area definition                                                  |
+| └ `centerCoordinate` | object | ✅ Yes      | The center point of the circular area                                         |
+| └─ `lat`             | number | ✅ Yes      | Latitude of the center point                                                  |
+| └─ `lng`             | number | ✅ Yes      | Longitude of the center point                                                 |
+| └ `radius`           | number | ✅ Yes      | Radius of the circle                                                          |
+| └ `radiusUnit`       | string | ❌ Optional | Unit of radius (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) (default: `m`) |
 
 ---
 
@@ -107,11 +107,11 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field           | Type    | Nullable | Description                                                            |
-|-----------------|---------|----------|------------------------------------------------------------------------|
-| `success`       | boolean | ❌ No     | Indicates whether the operation succeeded                              |
-| `data`          | object  | ❌ No     | Included only when `success` is `true`                                 |
-| └ `intersected` | boolean | ❌ No     | `true` if the polyline intersects the circular area, otherwise `false` |
+| Field           | Type    | Nullable | Description                                       |
+|-----------------|---------|----------|---------------------------------------------------|
+| `success`       | boolean | ❌ No     | Indicates whether the operation succeeded         |
+| `data`          | object  | ❌ No     | Included only when `success` is `true`            |
+| └ `intersected` | boolean | ❌ No     | Whether the polyline intersects the circular area |
 
 ---
 

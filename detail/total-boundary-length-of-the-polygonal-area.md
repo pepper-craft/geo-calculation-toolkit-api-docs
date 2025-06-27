@@ -1,6 +1,6 @@
 ## Total boundary length of the polygonal area
 
-This is an HTTP API that calculates the total boundary length of a polygon based on a sequence of geographic coordinates.
+This is an HTTP API that calculates the total boundary length of a given polygonal area.
 
 ---
 
@@ -25,18 +25,13 @@ This is an HTTP API that calculates the total boundary length of a polygon based
 
 ![total-boundary-length-of-the-polygonal-area](./img/total-boundary-length-of-the-polygonal-area.png)
 
-This image shows how the API calculates the total boundary length of a polygonal area formed by geographic coordinates.
-The polygon is labeled as A and is composed of multiple connected line segments: A-1, A-2, A-3, and A-4.
-Each segment connects two consecutive coordinates and represents one side of the polygon.
+This image illustrates how the API measures the perimeter of a polygon by summing the distances between its consecutive corner points.
 
-For example:
+- A polygon is defined by a series of ordered coordinates
+- Each side of the polygon is a segment between two adjacent points
+- All segment distances (e.g., distance 1–4) are summed to compute the total boundary length
 
-- A-1 is the first segment in the polygon
-- A-2 is the next segment
-- A-3 continues the boundary
-- A-4 connects back to the starting point, closing the shape
-
-The API calculates the total surface length by summing all the segment distances along the polygon’s boundary.
+The API returns the total perimeter of the polygon in the specified unit.
 
 ---
 
@@ -85,11 +80,11 @@ Content-Type: application/json
 
 **2.2.4. Request Body**
 
-| Field     | Type   | Required | Description                                           |
-|-----------|--------|----------|-------------------------------------------------------|
-| `polygon` | array  | ✅ Yes    | List of coordinates representing the polygon boundary |
-| └ `lat`   | number | ✅ Yes    | Latitude of the coordinate                            |
-| └ `lng`   | number | ✅ Yes    | Longitude of the coordinate                           |
+| Field     | Type   | Required | Description                                                |
+|-----------|--------|----------|------------------------------------------------------------|
+| `polygon` | array  | ✅ Yes    | An ordered list of coordinates defining the polygonal area |
+| └ `lat`   | number | ✅ Yes    | Latitude of a vertex                                       |
+| └ `lng`   | number | ✅ Yes    | Longitude of a vertex                                      |
 
 > If the polygon is not closed, the API will automatically add a final segment connecting the last point to the first.
 
@@ -111,12 +106,12 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field      | Type    | Nullable | Description                                                          |
-|------------|---------|----------|----------------------------------------------------------------------|
-| `success`  | boolean | ❌ No     | Indicates whether the operation succeeded                            |
-| `data`     | object  | ❌ No     | Included only when `success` is `true`                               |
-| └ `length` | number  | ❌ No     | Total surface length of the polygonal boundary (4 decimal precision) |
-| └ `unit`   | string  | ❌ No     | Unit of measurement (`mm`, `m`, `km`, `ft`, `yd`, `mi`)              |
+| Field      | Type    | Nullable | Description                                                                 |
+|------------|---------|----------|-----------------------------------------------------------------------------|
+| `success`  | boolean | ❌ No     | Indicates whether the operation succeeded                                   |
+| `data`     | object  | ❌ No     | Included only when `success` is `true`                                      |
+| └ `length` | number  | ❌ No     | Total boundary length of the polygon                                        |
+| └ `unit`   | string  | ❌ No     | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) |
 
 ---
 

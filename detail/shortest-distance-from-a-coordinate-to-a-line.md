@@ -1,7 +1,6 @@
 ## Shortest distance from a coordinate to a line
 
-This is an HTTP API that calculates the shortest surface distance from a given coordinate to a straight line defined by
-two geographic points.
+This is an HTTP API that calculates the shortest distance from a coordinate to a line segment, considering only the finite bounds of the segment.
 
 
 ---
@@ -27,13 +26,13 @@ two geographic points.
 
 ![shortest-distance-from-a-coordinate-to-a-line](./img/shortest-distance-from-a-coordinate-to-a-line.png)
 
-This image provides a visual explanation of how the API calculates the shortest distance from a coordinate to a single polyline.
-Points A and B represent specific locations defined by latitude and longitude, while polyline C is a straight line segment formed by exactly two geographic coordinates.
+This image illustrates how the shortest distance is determined from a coordinate to a limited line segment.
 
-- For point A, the shortest distance to polyline C is represented by the segment from A to point D, which lies on polyline C.
-- For point B, the shortest distance is the segment from B to point E, also located on polyline C.
+- Coordinates A and B are input points from which the distance is measured.
+- Line segment C represents the defined reference line between two endpoints.
+- Unlike perpendicular distance, the shortest distance may connect to either the perpendicular foot (if it falls within the segment) or to an endpoint (e.g., D or E) if the perpendicular foot lies outside the segment bounds.
 
-This API takes a single coordinate and a polyline consisting of two coordinates as input, and returns the shortest surface distance, taking the curvature of the Earth into account.
+The API returns the minimum distance between the input coordinate and the finite line segment, along with the unit of measurement.
 
 ---
 
@@ -87,14 +86,14 @@ Content-Type: application/json
 
 **2.2.4. Request Body**
 
-| Field        | Type   | Required | Description                                                   |
-|--------------|--------|----------|---------------------------------------------------------------|
-| `coordinate` | object | ✅ Yes    | The point from which the shortest distance will be calculated |
-| └ `lat`      | number | ✅ Yes    | Latitude of the input point                                   |
-| └ `lng`      | number | ✅ Yes    | Longitude of the input point                                  |
-| `line`       | array  | ✅ Yes    | Line segment represented by two coordinates                   |
-| └ `lat`      | number | ✅ Yes    | Latitude of the starting point                                |
-| └ `lng`      | number | ✅ Yes    | Longitude of the starting point                               |
+| Field        | Type   | Required | Description                                              |
+|--------------|--------|----------|----------------------------------------------------------|
+| `coordinate` | object | ✅ Yes    | The point from which the shortest distance is calculated |
+| └ `lat`      | number | ✅ Yes    | Latitude of the input coordinate                         |
+| └ `lng`      | number | ✅ Yes    | Longitude of the input coordinate                        |
+| `line`       | array  | ✅ Yes    | The finite line segment represented by two coordinates   |
+| └ `lat`      | number | ✅ Yes    | Latitude of a point on the line                          |
+| └ `lng`      | number | ✅ Yes    | Longitude of a point on the line                         |
 
 ---
 
@@ -114,12 +113,12 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field       | Type    | Nullable | Description                                                                           |
-|-------------|---------|----------|---------------------------------------------------------------------------------------|
-| `success`   | boolean | ❌ No     | Indicates whether the operation succeeded                                             |
-| `data`      | object  | ❌ No     | Included only when `success` is `true`                                                |
-| └`distance` | number  | ❌ No     | Shortest surface distance from the input coordinate to the line (4 decimal precision) |
-| └`unit`     | string  | ❌ No     | Unit of measurement (`mm`, `m`, `km`, `ft`, `yd`, `mi`)                               |
+| Field        | Type    | Nullable | Description                                                                           |
+|--------------|---------|----------|---------------------------------------------------------------------------------------|
+| `success`    | boolean | ❌ No     | Indicates whether the operation succeeded                                             |
+| `data`       | object  | ❌ No     | Included only when `success` is `true`                                                |
+| └ `distance` | number  | ❌ No     | Shortest surface distance from the input coordinate to the line (4 decimal precision) |
+| └ `unit`     | string  | ❌ No     | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`)           |
 
 ---
 

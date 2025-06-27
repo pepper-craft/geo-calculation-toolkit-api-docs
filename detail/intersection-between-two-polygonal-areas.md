@@ -1,6 +1,6 @@
 ## Intersection between two polygonal areas
 
-This is an HTTP API that determines whether two polygonal areas intersect based on their vertex coordinates.
+This is an HTTP API that determines whether two polygonal areas intersect.
 
 ---
 
@@ -25,12 +25,13 @@ This is an HTTP API that determines whether two polygonal areas intersect based 
 
 ![intersection-between-two-polygonal-areas](./img/intersection-between-two-polygonal-areas.png)
 
-This image shows how the API checks whether two polygonal areas intersect by comparing their boundary paths.
+This image illustrates how the API checks for spatial intersection between two polygonal areas.
 
-- Polygon A and Polygon B are each defined by a sequence of coordinates forming closed shapes.
-- In the zoomed view, the dotted intersection line indicates where the edges of the two polygons overlap.
+- Two polygonal shapes are shown, each defined by a list of connected coordinates
+- Labels A and B represent each polygonal area, not individual points
+- The API determines if any part of polygon A overlaps with polygon B
 
-The API returns a boolean value indicating whether the two polygonal areas intersect.
+The API returns a boolean result indicating whether the two polygonal areas intersect.
 
 ---
 
@@ -76,14 +77,14 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field      | Type   | Required | Description                                         |
-|------------|--------|----------|-----------------------------------------------------|
-| `polygon1` | array  | ✅ Yes    | First polygon represented as a list of coordinates  |
-| └ `lat`    | number | ✅ Yes    | Latitude of each vertex                             |
-| └ `lng`    | number | ✅ Yes    | Longitude of each vertex                            |
-| `polygon2` | array  | ✅ Yes    | Second polygon represented as a list of coordinates |
-| └ `lat`    | number | ✅ Yes    | Latitude of each vertex                             |
-| └ `lng`    | number | ✅ Yes    | Longitude of each vertex                            |
+| Field      | Type   | Required | Description                                            |
+|------------|--------|----------|--------------------------------------------------------|
+| `polygon1` | array  | ✅ Yes    | List of coordinates defining the first polygonal area  |
+| └ `lat`    | number | ✅ Yes    | Latitude of a vertex                                   |
+| └ `lng`    | number | ✅ Yes    | Longitude of a vertex                                  |
+| `polygon2` | array  | ✅ Yes    | List of coordinates defining the second polygonal area |
+| └ `lat`    | number | ✅ Yes    | Latitude of a vertex                                   |
+| └ `lng`    | number | ✅ Yes    | Longitude of a vertex                                  |
 
 > If the polygon is not closed, the API will automatically add a final segment connecting the last point to the first.
 
@@ -104,11 +105,11 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field           | Type    | Nullable | Description                                             |
-|-----------------|---------|----------|---------------------------------------------------------|
-| `success`       | boolean | ❌ No     | Indicates whether the operation succeeded               |
-| `data`          | object  | ❌ No     | Included only when `success` is `true`                  |
-| └ `intersected` | boolean | ❌ No     | `true` if the two polygons intersect, otherwise `false` |
+| Field           | Type    | Nullable | Description                               |
+|-----------------|---------|----------|-------------------------------------------|
+| `success`       | boolean | ❌ No     | Indicates whether the operation succeeded |
+| `data`          | object  | ❌ No     | Included only when `success` is `true`    |
+| └ `intersected` | boolean | ❌ No     | Whether the two polygonal areas intersect |
 
 ---
 

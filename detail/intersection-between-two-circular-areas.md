@@ -1,6 +1,6 @@
 ## Intersection between two circular areas
 
-This is an HTTP API that determines whether two circular areas intersect, based on their centers and radii.
+This is an HTTP API that determines whether two circular areas intersect.
 
 ---
 
@@ -25,11 +25,13 @@ This is an HTTP API that determines whether two circular areas intersect, based 
 
 ![intersection-between-two-circular-areas](./img/intersection-between-two-circular-areas.png)
 
-This image shows how the API checks whether two circular areas intersect based on their center coordinates and radii.
+This image illustrates how the API checks for intersection between two circular regions.
 
-- Circle A and Circle B each have their own center coordinate and radius, and are shown overlapping.
+- Two circular areas are represented, each defined by a center coordinate and a radius
+- The areas are labeled A and B, referring to the respective circular zones (not points)
+- The API checks whether the two circles spatially overlap
 
-The API returns a boolean value indicating whether the two circular areas intersect.
+The API returns a boolean result indicating whether the two circular areas intersect.
 
 ---
 
@@ -79,20 +81,20 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field                | Type   | Required   | Description                                                  |
-|----------------------|--------|------------|--------------------------------------------------------------|
-| `circle1`            | object | ✅ Yes      | The first circle to check for intersection                   |
-| └ `centerCoordinate` | object | ✅ Yes      | Center point of the first circle                             |
-| └─ `lat`             | number | ✅ Yes      | Latitude of the center                                       |
-| └─ `lng`             | number | ✅ Yes      | Longitude of the center                                      |
-| └ `radius`           | number | ✅ Yes      | Radius of the first circle                                   |
-| └ `radiusUnit`       | string | ❌ Optional | Unit of the radius (`mm`, `m`, `km`, etc.) — defaults to `m` |
-| `circle2`            | object | ✅ Yes      | The second circle to compare with                            |
-| └ `centerCoordinate` | object | ✅ Yes      | Center point of the second circle                            |
-| └─ `lat`             | number | ✅ Yes      | Latitude of the center                                       |
-| └─ `lng`             | number | ✅ Yes      | Longitude of the center                                      |
-| └ `radius`           | number | ✅ Yes      | Radius of the second circle                                  |
-| └ `radiusUnit`       | string | ❌ Optional | Unit of the radius (`mm`, `m`, `km`, etc.) — defaults to `m` |
+| Field                | Type   | Required   | Description                                                                   |
+|----------------------|--------|------------|-------------------------------------------------------------------------------|
+| `circle1`            | object | ✅ Yes      | The first circular area                                                       |
+| └ `centerCoordinate` | object | ✅ Yes      | Center of the first circle                                                    |
+| └─ `lat`             | number | ✅ Yes      | Latitude of the center                                                        |
+| └─ `lng`             | number | ✅ Yes      | Longitude of the center                                                       |
+| └ `radius`           | number | ✅ Yes      | Radius of the first circle                                                    |
+| └ `radiusUnit`       | string | ❌ Optional | Unit of radius (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) (default: `m`) |
+| `circle2`            | object | ✅ Yes      | The second circular area                                                      |
+| └ `centerCoordinate` | object | ✅ Yes      | Center of the second circle                                                   |
+| └─ `lat`             | number | ✅ Yes      | Latitude of the center                                                        |
+| └─ `lng`             | number | ✅ Yes      | Longitude of the center                                                       |
+| └ `radius`           | number | ✅ Yes      | Radius of the second circle                                                   |
+| └ `radiusUnit`       | string | ❌ Optional | Unit of radius (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) (default: `m`) |
 
 ---
 
@@ -111,11 +113,11 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field           | Type    | Nullable | Description                                                   |
-|-----------------|---------|----------|---------------------------------------------------------------|
-| `success`       | boolean | ❌ No     | Indicates whether the operation succeeded                     |
-| `data`          | object  | ❌ No     | Included only when `success` is `true`                        |
-| └ `intersected` | boolean | ❌ No     | `true` if the two circular areas intersect, otherwise `false` |
+| Field           | Type    | Nullable | Description                               |
+|-----------------|---------|----------|-------------------------------------------|
+| `success`       | boolean | ❌ No     | Indicates whether the operation succeeded |
+| `data`          | object  | ❌ No     | Included only when `success` is `true`    |
+| └ `intersected` | boolean | ❌ No     | Whether the two circular areas intersect  |
 
 ---
 

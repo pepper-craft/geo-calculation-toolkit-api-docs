@@ -1,6 +1,6 @@
 ## Intersection between two polylines
 
-This is an HTTP API that checks whether two polylines intersect based on their ordered coordinates.
+This is an HTTP API that determines whether two polylines intersect.
 
 ---
 
@@ -25,12 +25,13 @@ This is an HTTP API that checks whether two polylines intersect based on their o
 
 ![intersection-between-two-polylines](./img/intersection-between-two-polylines.png)
 
-This image shows how the API determines whether two polylines intersect by evaluating the paths formed by their coordinates.
+This image illustrates how the API checks whether two polylines cross each other at any point.
 
-- Polyline A and Polyline B are each made up of multiple coordinates connected in sequence.
-- In the zoomed view, the black dot labeled “intersection” represents the point where segments from each polyline cross.
+- Two polylines are drawn using ordered sets of coordinates
+- Each polyline is labeled A or B, referring to the entire line structure
+- The intersection point is where any segment from polyline A crosses polyline B
 
-The API returns a boolean value indicating whether any segments of the two polylines intersect.
+The API returns a boolean result indicating whether the two polylines intersect at any location.
 
 ---
 
@@ -73,14 +74,14 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field       | Type   | Required | Description                                                   |
-|-------------|--------|----------|---------------------------------------------------------------|
-| `polyline1` | array  | ✅ Yes    | First polyline represented as an ordered list of coordinates  |
-| └ `lat`     | number | ✅ Yes    | Latitude of a vertex                                          |
-| └ `lng`     | number | ✅ Yes    | Longitude of a vertex                                         |
-| `polyline2` | array  | ✅ Yes    | Second polyline represented as an ordered list of coordinates |
-| └ `lat`     | number | ✅ Yes    | Latitude of a vertex                                          |
-| └ `lng`     | number | ✅ Yes    | Longitude of a vertex                                         |
+| Field       | Type   | Required | Description                                         |
+|-------------|--------|----------|-----------------------------------------------------|
+| `polyline1` | array  | ✅ Yes    | Ordered list of coordinates for the first polyline  |
+| └ `lat`     | number | ✅ Yes    | Latitude of a point in the polyline                 |
+| └ `lng`     | number | ✅ Yes    | Longitude of a point in the polyline                |
+| `polyline2` | array  | ✅ Yes    | Ordered list of coordinates for the second polyline |
+| └ `lat`     | number | ✅ Yes    | Latitude of a point in the polyline                 |
+| └ `lng`     | number | ✅ Yes    | Longitude of a point in the polyline                |
 
 ---
 
@@ -99,11 +100,11 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field           | Type    | Nullable | Description                                              |
-|-----------------|---------|----------|----------------------------------------------------------|
-| `success`       | boolean | ❌ No     | Indicates whether the operation succeeded                |
-| `data`          | object  | ❌ No     | Included only when `success` is `true`                   |
-| └ `intersected` | boolean | ❌ No     | `true` if the two polylines intersect, otherwise `false` |
+| Field           | Type    | Nullable | Description                               |
+|-----------------|---------|----------|-------------------------------------------|
+| `success`       | boolean | ❌ No     | Indicates whether the operation succeeded |
+| `data`          | object  | ❌ No     | Included only when `success` is `true`    |
+| └ `intersected` | boolean | ❌ No     | Whether the two polylines intersect       |
 
 ---
 

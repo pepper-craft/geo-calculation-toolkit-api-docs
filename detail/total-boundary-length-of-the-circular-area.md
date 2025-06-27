@@ -1,6 +1,6 @@
 ## Total boundary length of the circular area
 
-This is an HTTP API that calculates the total circumference of a circular area based on a given center coordinate and radius.
+This is an HTTP API that calculates the total boundary length (circumference) of a given circular area.
 
 ---
 
@@ -25,11 +25,13 @@ This is an HTTP API that calculates the total circumference of a circular area b
 
 ![total-boundary-length-of-the-circular-area](./img/total-boundary-length-of-the-circular-area.png)
 
-This image shows how the API calculates the boundary length of a circular area on the Earth's surface.
-In the left view, the circle is defined by a center point labeled A.
-In the zoomed view on the right, the ring represents the circular boundary, and the arrow labeled "distance" indicates the total length of that boundary.
+This image illustrates how the API computes the circumference of a circular area defined by a center coordinate and radius.
 
-The API takes a center coordinate (latitude and longitude) and a radius value as input, and calculates the surface circumference of the resulting circle, considering the curvature of the Earth.
+- A circle is represented as an area labeled A
+- The circle is defined by a center coordinate and a radius
+- The API calculates the total boundary length (circumference) based on the radius
+
+The API returns the total circular boundary length in the specified unit.
 
 ---
 
@@ -77,14 +79,14 @@ Content-Type: application/json
 
 **2.2.4. Request Body**
 
-| Field                | Type   | Required   | Description                                                              |
-|----------------------|--------|------------|--------------------------------------------------------------------------|
-| `circle`             | object | ✅ Yes      | Definition of the circular area                                          |
-| └ `centerCoordinate` | object | ✅ Yes      | Center point of the circle                                               |
-| └─ `lat`             | number | ✅ Yes      | Latitude of the center                                                   |
-| └─ `lng`             | number | ✅ Yes      | Longitude of the center                                                  |
-| └ `radius`           | number | ✅ Yes      | Radius length of the circle                                              |
-| └ `radiusUnit`       | string | ❌ Optional | Unit of the radius (`mm`, `cm`, `m`, `km`, `ft`, `mi`) - defaults to `m` |
+| Field                | Type   | Required   | Description                                                                   |
+|----------------------|--------|------------|-------------------------------------------------------------------------------|
+| `circle`             | object | ✅ Yes      | The circular area definition                                                  |
+| └ `centerCoordinate` | object | ✅ Yes      | The center point of the circle                                                |
+| └─ `lat`             | number | ✅ Yes      | Latitude of the center                                                        |
+| └─ `lng`             | number | ✅ Yes      | Longitude of the center                                                       |
+| └ `radius`           | number | ✅ Yes      | Radius of the circle                                                          |
+| └ `radiusUnit`       | string | ❌ Optional | Unit of radius (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) (default: `m`) |
 
 ---
 
@@ -104,12 +106,12 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field      | Type    | Nullable | Description                                                          |
-|------------|---------|----------|----------------------------------------------------------------------|
-| `success`  | boolean | ❌ No     | Indicates whether the operation succeeded                            |
-| `data`     | object  | ❌ No     | Included only when `success` is `true`                               |
-| └ `length` | number  | ❌ No     | Total surface length of the polygonal boundary (4 decimal precision) |
-| └ `unit`   | string  | ❌ No     | Unit of measurement (`mm`, `m`, `km`, `ft`, `yd`, `mi`)              |
+| Field      | Type    | Nullable | Description                                                                 |
+|------------|---------|----------|-----------------------------------------------------------------------------|
+| `success`  | boolean | ❌ No     | Indicates whether the operation succeeded                                   |
+| `data`     | object  | ❌ No     | Included only when `success` is `true`                                      |
+| └ `length` | number  | ❌ No     | Total boundary length (circumference)                                       |
+| └ `unit`   | string  | ❌ No     | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) |
 
 ---
 

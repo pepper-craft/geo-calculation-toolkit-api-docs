@@ -1,6 +1,6 @@
 ## Destination coordinate after moving a certain distance in a given bearing
 
-This is an HTTP API that calculates the destination coordinate after moving a specified distance in a given bearing from a starting point.
+This is an HTTP API that calculates the destination coordinate after moving a certain distance from a starting point in a specified bearing.
 
 ---
 
@@ -25,14 +25,14 @@ This is an HTTP API that calculates the destination coordinate after moving a sp
 
 ![destination-coordinate-after-moving-a-certain-distance-in-a-given-bearing](./img/destination-coordinate-after-moving-a-certain-distance-in-a-given-bearing.png)
 
-This image shows how the API calculates a destination coordinate based on a specified starting point, distance, and bearing.
+This image illustrates how the API computes a new coordinate by moving a set distance from a point in a given directional bearing.
 
-- Point A represents the starting coordinate.
-- The dotted arc labeled “bearing” indicates the angular direction measured clockwise from true north.
-- The solid arrow line shows the movement from point A along that bearing for the specified distance.
-- Point C is the resulting coordinate — the geographic position reached after applying the movement.
+- A starting coordinate (point A) defines the origin
+- A bearing (angle from true north) specifies the movement direction
+- A distance value indicates how far to move from the origin
+- The resulting destination (point C) lies along the specified bearing and distance
 
-The API returns the resulting coordinate calculated using the given bearing and distance from the input point.
+The API returns the coordinate (point C) obtained by moving from the starting point in the provided bearing by the given distance.
 
 ---
 
@@ -73,14 +73,14 @@ Content-Type: application/json
 
 **2.2.3. Request Body**
 
-| Field            | Type   | Required   | Description                                               |
-|------------------|--------|------------|-----------------------------------------------------------|
-| `fromCoordinate` | object | ✅ Yes      | Starting point from which the movement begins             |
-| └ `lat`          | number | ✅ Yes      | Latitude of the starting coordinate                       |
-| └ `lng`          | number | ✅ Yes      | Longitude of the starting coordinate                      |
-| `bearing`        | number | ✅ Yes      | Bearing in degrees (0–360), where 0° is true north        |
-| `distance`       | number | ✅ Yes      | Distance to move along the bearing                        |
-| `distanceUnit`   | string | ❌ Optional | Unit of distance (`mm`, `m`, `km`, etc.). Defaults to `m` |
+| Field            | Type   | Required   | Description                                                                     |
+|------------------|--------|------------|---------------------------------------------------------------------------------|
+| `fromCoordinate` | object | ✅ Yes      | The starting coordinate                                                         |
+| └ `lat`          | number | ✅ Yes      | Latitude of the starting coordinate                                             |
+| └ `lng`          | number | ✅ Yes      | Longitude of the starting coordinate                                            |
+| `bearing`        | number | ✅ Yes      | Direction of movement in degrees (0° = true north, clockwise)                   |
+| `distance`       | number | ✅ Yes      | Distance to move from the starting point                                        |
+| `distanceUnit`   | string | ❌ Optional | Unit of distance (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) (default: `m`) |
 
 ---
 
@@ -102,13 +102,13 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field          | Type    | Nullable | Description                                               |
-|----------------|---------|----------|-----------------------------------------------------------|
-| `success`      | boolean | ❌ No     | Indicates whether the operation succeeded                 |
-| `data`         | object  | ❌ No     | Included only when `success` is `true`                    |
-| └ `coordinate` | object  | ❌ No     | Resulting coordinate after moving along the given bearing |
-| └─ `lat`       | number  | ❌ No     | Latitude of the resulting coordinate                      |
-| └─ `lng`       | number  | ❌ No     | Longitude of the resulting coordinate                     |
+| Field          | Type    | Nullable | Description                               |
+|----------------|---------|----------|-------------------------------------------|
+| `success`      | boolean | ❌ No     | Indicates whether the operation succeeded |
+| `data`         | object  | ❌ No     | Included only when `success` is `true`    |
+| └ `coordinate` | object  | ❌ No     | The resulting coordinate after movement   |
+| └─ `lat`       | number  | ❌ No     | Latitude of the destination coordinate    |
+| └─ `lng`       | number  | ❌ No     | Longitude of the destination coordinate   |
 
 ---
 
