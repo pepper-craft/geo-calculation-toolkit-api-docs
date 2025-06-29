@@ -156,11 +156,11 @@ To view the full list of error codes, please visit the link below.
 
 ## 🔗 5. Reference Links
 
-- [🚀 Try the API on RapidAPI Console](https://rapidapi.com/your-api/test)  
+- [🚀 Try the API on RapidAPI Console](https://rapidapi.com/pepper-craft1-pepper-craft-default/api/geo-calculation-toolkit-api)  
   Run live requests, view sample code, pricing, and manage your API key—all in one place.
 
 
-- [💬 Contact Support](mailto:support@yourapi.com)  
+- [💬 Contact Support](mailto:peppercraft40@gmail.com)  
   If you have any questions or need help with the API, feel free to email us. We’ll get back to you as soon as possible.
 
 ---
