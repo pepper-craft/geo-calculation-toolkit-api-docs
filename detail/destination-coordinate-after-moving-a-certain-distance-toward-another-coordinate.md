@@ -164,8 +164,13 @@ To view the full list of error codes, please visit the link below.
   Run live requests, view sample code, pricing, and manage your API key—all in one place.
 
 
-- [💬 Contact Support](mailto:peppercraft40@gmail.com)  
-  If you have any questions or need help with the API, feel free to email us. We’ll get back to you as soon as possible.
+- [🐞 Open a GitHub Issue](https://github.com/pepper-craft/geo-calculation-toolkit-api-docs/issues)  
+  Use this for technical support, API usage questions, feature requests, or bug reports.  
+  We respond publicly so others can benefit from the same information.
+
+
+- [📬 Email Us](mailto:peppercraft40@gmail.com)  
+  For private or sensitive inquiries that should not be shared publicly.
 
 ---
 
