@@ -80,9 +80,9 @@ Content-Type: application/json
 
 **2.2.3. Query Parameters**
 
-| Parameter | Type   | Required   | Description                                                                                |
-|-----------|--------|------------|--------------------------------------------------------------------------------------------|
-| `unit`    | string | ❌ Optional | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`). Default: `m`. |
+| Parameter | Type   | Required   | Description                                                                                 |
+|-----------|--------|------------|---------------------------------------------------------------------------------------------|
+| `unit`    | string | ❌ Optional | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) (default: `m`). |
 
 **2.2.4. Request Body**
 
@@ -113,12 +113,12 @@ Content-Type: application/json
 
 ### 3.2. Response Specifications
 
-| Field        | Type    | Nullable | Description                                                                                         |
-|--------------|---------|----------|-----------------------------------------------------------------------------------------------------|
-| `success`    | boolean | ❌ No     | Indicates whether the operation succeeded                                                           |
-| `data`       | object  | ❌ No     | Included only when `success` is `true`                                                              |
-| └ `distance` | number  | ❌ No     | Shortest perpendicular surface distance from the input coordinate to the line (4 decimal precision) |
-| └ `unit`     | string  | ❌ No     | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`)                         |
+| Field        | Type    | Nullable | Description                                                                   |
+|--------------|---------|----------|-------------------------------------------------------------------------------|
+| `success`    | boolean | ❌ No     | Indicates whether the operation succeeded                                     |
+| `data`       | object  | ❌ No     | Included only when `success` is `true`                                        |
+| └ `distance` | number  | ❌ No     | Shortest perpendicular surface distance from the input coordinate to the line |
+| └ `unit`     | string  | ❌ No     | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`)   |
 
 ---
 

@@ -73,9 +73,9 @@ Content-Type: application/json
 
 **2.2.3. Query Parameters**
 
-| Parameter | Type   | Required   | Description                                                                                |
-|-----------|--------|------------|--------------------------------------------------------------------------------------------|
-| `unit`    | string | ❌ Optional | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`). Default: `m`. |
+| Parameter | Type   | Required   | Description                                                                                 |
+|-----------|--------|------------|---------------------------------------------------------------------------------------------|
+| `unit`    | string | ❌ Optional | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) (default: `m`). |
 
 **2.2.4. Request Body**
 
@@ -110,7 +110,7 @@ Content-Type: application/json
 |--------------|---------|----------|-----------------------------------------------------------------------------|
 | `success`    | boolean | ❌ No     | Indicates whether the operation succeeded                                   |
 | `data`       | object  | ❌ No     | Included only when `success` is `true`                                      |
-| └ `distance` | number  | ❌ No     | Distance between coordinates (4 decimal precision)                          |
+| └ `distance` | number  | ❌ No     | Distance between coordinates                                                |
 | └ `unit`     | string  | ❌ No     | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) |
 
 ---

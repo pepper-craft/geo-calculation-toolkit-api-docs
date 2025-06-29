@@ -76,7 +76,7 @@ Content-Type: application/json
 
 | Parameter | Type   | Required   | Description                                                                                |
 |-----------|--------|------------|--------------------------------------------------------------------------------------------|
-| `unit`    | string | ❌ Optional | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`). Default: `m`. |
+| `unit`    | string | ❌ Optional | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) (default: `m`). |
 
 **2.2.4. Request Body**
 
