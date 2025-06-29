@@ -100,8 +100,8 @@ Content-Type: application/json
   "success": true,
   "data": {
     "coordinate": {
-      "lat": 37.618453,
-      "lng": 126.920180
+      "lat": 37.6184918,
+      "lng": 126.9200778
     }
   }
 }
