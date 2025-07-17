@@ -167,4 +167,4 @@ To view the full list of error codes, please visit the link below.
 
 ---
 
-[Go to API List](../README)
+[Go to API List](../README.md)
