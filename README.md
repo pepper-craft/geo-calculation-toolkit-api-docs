@@ -1,3 +1,5 @@
+![total-boundary-length-of-the-circular-area](./detail/img/geo-calculation-toolkit-api-logo.jpeg)
+
 ## Introducing the Geo Calculation Toolkit API
 
 **Geo Calculation Toolkit** is a utility-focused API suite for working with geographic coordinates and shapes.
