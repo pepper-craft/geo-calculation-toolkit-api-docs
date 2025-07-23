@@ -43,6 +43,8 @@ The API returns the perpendicular distance from the input coordinate to the near
 ```http request
 POST {{BASE-URL}}/distance/from-point-to-line/perpendicular?unit=m
 Content-Type: application/json
+X-RapidAPI-Key: {{YOUR_API_KEY}}
+X-RapidAPI-Host: geo-calculation-toolkit-api.p.rapidapi.com
 
 {
   "coordinate": {
@@ -72,11 +74,11 @@ Content-Type: application/json
 
 **2.2.2. Request Headers**
 
-| Header Name       | Type   | Required | Description                         |
-|-------------------|--------|----------|-------------------------------------|
-| `Content-Type`    | string | ✅ Yes    | Must be `application/json`          |
-| `X-RapidAPI-Key`  | string | ✅ Yes    | Your API key issued by RapidAPI     |
-| `X-RapidAPI-Host` | string | ✅ Yes    | The API host identifier on RapidAPI |
+| Header Name       | Type   | Required | Description                                          |
+|-------------------|--------|----------|------------------------------------------------------|
+| `Content-Type`    | string | ✅ Yes    | Must be `application/json`                           |
+| `X-RapidAPI-Key`  | string | ✅ Yes    | Your API key issued by RapidAPI                      |
+| `X-RapidAPI-Host` | string | ✅ Yes    | Must be `geo-calculation-toolkit-api.p.rapidapi.com` |
 
 **2.2.3. Query Parameters**
 

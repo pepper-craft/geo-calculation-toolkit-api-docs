@@ -43,6 +43,8 @@ The API returns the geographic coordinate (such as point D or E) where a perpend
 ```http request
 POST {{BASE-URL}}/coordinate/perpendicular-foot
 Content-Type: application/json
+X-RapidAPI-Key: {{YOUR_API_KEY}}
+X-RapidAPI-Host: geo-calculation-toolkit-api.p.rapidapi.com
 
 {
   "coordinate": {
@@ -72,11 +74,11 @@ Content-Type: application/json
 
 **2.2.2. Request Headers**
 
-| Header Name       | Type   | Required | Description                         |
-|-------------------|--------|----------|-------------------------------------|
-| `Content-Type`    | string | ✅ Yes    | Must be `application/json`          |
-| `X-RapidAPI-Key`  | string | ✅ Yes    | Your API key issued by RapidAPI     |
-| `X-RapidAPI-Host` | string | ✅ Yes    | The API host identifier on RapidAPI |
+| Header Name       | Type   | Required | Description                                          |
+|-------------------|--------|----------|------------------------------------------------------|
+| `Content-Type`    | string | ✅ Yes    | Must be `application/json`                           |
+| `X-RapidAPI-Key`  | string | ✅ Yes    | Your API key issued by RapidAPI                      |
+| `X-RapidAPI-Host` | string | ✅ Yes    | Must be `geo-calculation-toolkit-api.p.rapidapi.com` |
 
 **2.2.3. Request Body**
 

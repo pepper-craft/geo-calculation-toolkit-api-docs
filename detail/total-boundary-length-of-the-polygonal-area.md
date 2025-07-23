@@ -42,6 +42,8 @@ The API returns the total perimeter of the polygon in the specified unit.
 ```http request
 POST {{BASE-URL}}/length/polygon/boundary?unit=m
 Content-Type: application/json
+X-RapidAPI-Key: {{YOUR_API_KEY}}
+X-RapidAPI-Host: geo-calculation-toolkit-api.p.rapidapi.com
 
 {
   "polygon": [
@@ -66,16 +68,16 @@ Content-Type: application/json
 
 **2.2.2. Request Headers**
 
-| Header Name       | Type   | Required | Description                         |
-|-------------------|--------|----------|-------------------------------------|
-| `Content-Type`    | string | ✅ Yes    | Must be `application/json`          |
-| `X-RapidAPI-Key`  | string | ✅ Yes    | Your API key issued by RapidAPI     |
-| `X-RapidAPI-Host` | string | ✅ Yes    | The API host identifier on RapidAPI |
+| Header Name       | Type   | Required | Description                                          |
+|-------------------|--------|----------|------------------------------------------------------|
+| `Content-Type`    | string | ✅ Yes    | Must be `application/json`                           |
+| `X-RapidAPI-Key`  | string | ✅ Yes    | Your API key issued by RapidAPI                      |
+| `X-RapidAPI-Host` | string | ✅ Yes    | Must be `geo-calculation-toolkit-api.p.rapidapi.com` |
 
 **2.2.3. Query Parameters**
 
-| Parameter | Type   | Required   | Description                                                                                |
-|-----------|--------|------------|--------------------------------------------------------------------------------------------|
+| Parameter | Type   | Required   | Description                                                                                 |
+|-----------|--------|------------|---------------------------------------------------------------------------------------------|
 | `unit`    | string | ❌ Optional | Unit for the response value (`mm`, `cm`, `m`, `km`, `in`, `ft`, `yd`, `mi`) (default: `m`). |
 
 **2.2.4. Request Body**
